@@ -5,7 +5,6 @@ namespace JumpHero
 {
 	public partial class Airborne : State
 	{
-
         public override void EnterState()
         {
             
@@ -23,7 +22,14 @@ namespace JumpHero
 
         public override void PhysicsProcess(double delta)
         {
-            
+            player.MoveAndSlide();
+            player.Velocity += Vector2.Down * player.Gravity;
+
+            if (player.IsOnFloor()) 
+                stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
+                
+            else if (player.Velocity.Y > Player.FREEFALL_THRESHOLD)
+                stateManager.ChangeState(PlayerStateManager.PlayerState.FREEFALL);
         }
 
         public override void InputProcess(InputEvent inputEvent)
