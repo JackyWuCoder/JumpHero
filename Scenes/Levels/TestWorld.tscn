@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://lwo14eijpqe4"]
+
+[ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Player.tscn" id="1_y5rc8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a7agg"]
+size = Vector2(1500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e404b"]
+size = Vector2(1500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_warui"]
+size = Vector2(500, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atewy"]
+size = Vector2(500, 100)
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(500, 875)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+texture = SubResource("PlaceholderTexture2D_a7agg")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_e404b")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1200, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Player" parent="." instance=ExtResource("1_y5rc8")]
+position = Vector2(510, 265)
