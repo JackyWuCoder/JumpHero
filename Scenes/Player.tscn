@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyqm2jhmho4gp"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerStateManager.cs" id="2_mh5yt"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Airborne.cs" id="3_xaqjd"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Freefall.cs" id="4_6bp1p"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Grounded.cs" id="5_7ey8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um7ai"]
+size = Vector2(50, 50)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sb33s"]
+size = Vector2(50, 50)
+
+[node name="Player" type="RigidBody2D"]
+script = ExtResource("1_f4ivg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_um7ai")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_sb33s")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
+
+[node name="States" type="Node" parent="."]
+script = ExtResource("2_mh5yt")
+
+[node name="Airborne" type="Node" parent="States"]
+script = ExtResource("3_xaqjd")
+
+[node name="Freefall" type="Node" parent="States"]
+script = ExtResource("4_6bp1p")
+
+[node name="Grounded" type="Node" parent="States"]
+script = ExtResource("5_7ey8u")
