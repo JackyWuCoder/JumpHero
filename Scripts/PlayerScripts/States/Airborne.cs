@@ -29,8 +29,12 @@ namespace JumpHero
             const float elasticity = 0.5f;
             if (player.IsOnWallOnly())
                 player.Velocity += Vector2.Left * velocityXComponent * elasticity;
-
-            if (player.IsOnFloor()) 
+            
+            float slopeAngle = player.GetSlopeAngle();
+            if (slopeAngle != 0)
+                player.Velocity += Vector2.Right * player.Velocity.Y * Mathf.Cos(slopeAngle);
+                
+            if (player.IsOnFloor() && slopeAngle == 0)
                 stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
                 
             else if (player.Velocity.Y > Player.FREEFALL_THRESHOLD)
