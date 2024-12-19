@@ -7,8 +7,8 @@ namespace JumpHero
     {
 		private static readonly float STARTING_X_COMPONENT = 75f;
 		private static readonly float STARTING_Y_COMPONENT = 75f;
-		private static readonly float MAX_Y_COMPONENT = 1250f;
-		private static readonly float MAX_X_COMPONENT = 937.5f;
+		private static readonly float MAX_Y_COMPONENT = 600f;
+		private static readonly float MAX_X_COMPONENT = 450f;
 		private float _jumpXComponent = STARTING_X_COMPONENT;
 		private float _jumpYComponent = STARTING_Y_COMPONENT;
 
