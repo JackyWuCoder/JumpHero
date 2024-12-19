@@ -22,14 +22,17 @@ namespace JumpHero
 
         public override void PhysicsProcess(double delta)
         {
-            if (player.IsOnFloor())
-            {
-                stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
-                return;
-            }
+            float velocityXComponent = player.Velocity.X;
             const float gravityBoost = 1.2f;
             player.Velocity += Vector2.Down * player.Gravity * gravityBoost;
             player.MoveAndSlide();
+
+            const float elasticity = 0.3f;
+            if (player.IsOnWallOnly())
+                player.Velocity += Vector2.Left * velocityXComponent * elasticity;
+
+            if (player.IsOnFloor())
+                stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
         }
 
         public override void InputProcess(InputEvent inputEvent)
