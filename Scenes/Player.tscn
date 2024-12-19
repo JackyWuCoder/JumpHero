@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyqm2jhmho4gp"]
+[gd_scene load_steps=9 format=3 uid="uid://dyqm2jhmho4gp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerStateManager.cs" id="2_mh5yt"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Airborne.cs" id="3_xaqjd"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Freefall.cs" id="4_6bp1p"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Grounded.cs" id="5_7ey8u"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Charging.cs" id="6_551xx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um7ai"]
 size = Vector2(50, 50)
@@ -12,7 +13,7 @@ size = Vector2(50, 50)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sb33s"]
 size = Vector2(50, 50)
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_f4ivg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -37,3 +38,6 @@ script = ExtResource("4_6bp1p")
 
 [node name="Grounded" type="Node" parent="States"]
 script = ExtResource("5_7ey8u")
+
+[node name="Charging" type="Node" parent="States"]
+script = ExtResource("6_551xx")
