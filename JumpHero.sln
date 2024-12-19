@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumpHero", "JumpHero.csproj", "{E4A78F19-96B3-4E03-8960-75CA17118BEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{E4A78F19-96B3-4E03-8960-75CA17118BEC}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
