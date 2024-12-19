@@ -5,18 +5,20 @@ namespace JumpHero
 {
 	public partial class PlayerStateManager : Node
 	{
-		[Signal] public delegate void OnPlayerStateChangeEventHandler();
 		public enum PlayerState 
 		{
 			AIRBORNE,
 			FREEFALL,
-			GROUNDED
+			GROUNDED,
+			CHARGING
 		}
 		public PlayerState State { get; private set; } = PlayerState.GROUNDED;
 		private State _currentState = null;
+		private Player _player;
 		
 		public override void _Ready()
 		{
+			_player = GetOwner() as Player;
 			_currentState = GetState(PlayerState.GROUNDED);
 		}
 
@@ -35,15 +37,18 @@ namespace JumpHero
             _currentState.InputProcess(@event);
         }
 
-        public void ChangeState(PlayerState state)
+        public void ChangeState(PlayerState newState)
 		{
-			if (this.State == state) return;
+			if (State == newState) return;
+
 			_currentState.ExitState();
-			State newState = GetState(state);
-			newState.EnterState();
-			this.State = state;
-			_currentState = newState;
-			EmitSignal(SignalName.OnPlayerStateChange);
+			State stateObject = GetState(newState);
+			stateObject.EnterState();
+			_currentState = stateObject;
+			
+			PlayerState oldState = State;
+			State = newState;
+			_player.NotifyStateChange(oldState, newState);
 		}
 
 		private State GetState(PlayerState state)
