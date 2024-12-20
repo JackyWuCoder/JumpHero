@@ -24,8 +24,8 @@ namespace JumpHero
 		{
 			float velocityXComponent = player.Velocity.X;
 			const float gravityBoost = 1.2f;
-			player.Velocity += Vector2.Down * player.Gravity * gravityBoost;
 			player.MoveAndSlide();
+			player.Velocity = new Vector2(player.GetRealVelocity().X, player.Velocity.Y + player.Gravity * gravityBoost);
 
 			const float elasticity = 0.3f;
 			if (player.IsOnWallOnly())
