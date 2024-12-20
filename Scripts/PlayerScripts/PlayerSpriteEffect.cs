@@ -11,7 +11,18 @@ namespace JumpHero
 
 		public override void _Ready()
 		{
-			GetOwner<Player>().Connect(Player.SignalName.OnChargeChange, Callable.From((float chargePercent) => OnChargeChange(chargePercent)));
+			Player player = GetOwner<Player>();
+			player.Connect(Player.SignalName.OnChargeChange, Callable.From((float chargePercent) => OnChargeChange(chargePercent)));
+			player.Connect(Player.SignalName.OnStateChange, 
+				Callable.From(
+					(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState) => OnStateChange(oldState, newState)
+				)
+			);
+		}
+
+		private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
+		{
+			// TODO: Implement this part
 		}
 
 		private void OnChargeChange(float chargePercent)
