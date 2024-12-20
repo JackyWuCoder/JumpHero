@@ -43,7 +43,9 @@ namespace JumpHero
 		public float GetSlopeAngle()
 		{
 			// TODO: Add ability to calculate slope angle player is on, such that when landing on a slope the player will slide off the slope instead of landing on it directly
-			return 0;
+			Vector2 surfaceNormal = floor_normal;
+			float angle = surfaceNormal.angle_to(Vector2.UP);
+			return angle;
 		}
 	}
 }
