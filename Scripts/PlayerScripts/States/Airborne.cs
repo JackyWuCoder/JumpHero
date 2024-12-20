@@ -22,11 +22,11 @@ namespace JumpHero
 
         public override void PhysicsProcess(double delta)
         {
+            float velocityXComponent = player.Velocity.X;
             player.MoveAndSlide();
             player.Velocity = new Vector2(player.GetRealVelocity().X, player.Velocity.Y + player.Gravity);
 
-            float velocityXComponent = player.Velocity.X;
-            const float elasticity = 0.5f;
+            const float elasticity = 0.8f;
             if (player.IsOnWallOnly())
                 player.Velocity += Vector2.Left * velocityXComponent * elasticity;
                 
