@@ -26,6 +26,11 @@ size = Vector2(500, 900)
 [node name="LevelManager" type="Node2D" parent="."]
 script = ExtResource("1_t2mjh")
 
+[node name="Player" parent="." instance=ExtResource("1_y5rc8")]
+position = Vector2(620, 596)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(500, 875)
 
@@ -45,11 +50,6 @@ shape = SubResource("RectangleShape2D_warui")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
 texture = SubResource("PlaceholderTexture2D_atewy")
-
-[node name="Player" parent="." instance=ExtResource("1_y5rc8")]
-position = Vector2(620, 596)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(-160, 344)
