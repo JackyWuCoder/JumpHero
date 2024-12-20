@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://lwo14eijpqe4"]
+[gd_scene load_steps=9 format=3 uid="uid://lwo14eijpqe4"]
 
+[ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_t2mjh"]
 [ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Player.tscn" id="1_y5rc8"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a7agg"]
@@ -21,6 +22,9 @@ size = Vector2(500, 900)
 size = Vector2(500, 900)
 
 [node name="TestWorld" type="Node2D"]
+
+[node name="LevelManager" type="Node2D" parent="."]
+script = ExtResource("1_t2mjh")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(500, 875)
@@ -45,7 +49,7 @@ texture = SubResource("PlaceholderTexture2D_atewy")
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
 position = Vector2(620, 596)
 
-[node name="Testing Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(-160, 344)
