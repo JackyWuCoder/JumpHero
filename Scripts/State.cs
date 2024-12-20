@@ -18,8 +18,23 @@ namespace JumpHero
 		}
 		public abstract void EnterState();
 		public abstract void ExitState();
-		public abstract void Process(double delta);
-		public abstract void PhysicsProcess(double delta);
-		public abstract void InputProcess(InputEvent inputEvent);
+		public virtual void Process(double delta) {}
+
+		// Default behaviour calculates physics in the air (airborne/freefall)
+		public virtual void PhysicsProcess(double delta) 
+		{
+			float velocityXComponent = player.Velocity.X;
+			const float gravityBoost = 1.2f;
+			player.Velocity += Vector2.Down * player.Gravity * gravityBoost;
+			player.MoveAndSlide();
+
+			const float elasticity = 0.3f;
+			if (player.IsOnWallOnly())
+					player.Velocity += Vector2.Left * velocityXComponent * elasticity;
+
+			if (player.IsOnFloor())
+					stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
+		}
+		public virtual void InputProcess(InputEvent inputEvent) {}
 	}
 }

@@ -45,7 +45,7 @@ texture = SubResource("PlaceholderTexture2D_atewy")
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
 position = Vector2(465, -63)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Testing Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(-160, 344)

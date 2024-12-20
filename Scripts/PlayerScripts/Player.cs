@@ -16,7 +16,7 @@ namespace JumpHero
 		// static constants
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
 		public static readonly float FREEFALL_THRESHOLD = 100f;
-		private static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
+		public static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
 
 		// data members
 		public float Gravity { get; private set; } = DEFAULT_GRAVITY;
@@ -25,7 +25,7 @@ namespace JumpHero
 
 		public override void _Ready()
 		{
-			
+			FloorMaxAngle = SLOPE_ANGLE_THRESHOLD;
 		}
 
 		public void NotifyStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
@@ -43,8 +43,8 @@ namespace JumpHero
 		public float GetSlopeAngle()
 		{
 			// TODO: Add ability to calculate slope angle player is on, such that when landing on a slope the player will slide off the slope instead of landing on it directly
-			Vector2 surfaceNormal = floor_normal;
-			float angle = surfaceNormal.angle_to(Vector2.UP);
+			Vector2 surfaceNormal = GetFloorNormal();
+			float angle = surfaceNormal.AngleTo(Vector2.Up);
 			return angle;
 		}
 	}
