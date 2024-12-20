@@ -12,11 +12,10 @@ namespace JumpHero
 		[Signal] public delegate void OnChargeChangeEventHandler();
 
 		// player component node names
-		private static readonly string SLOPE_DETECTOR_NODE_NAME = "SlopeDetector";
 
 		// static constants
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
-		public static readonly float FREEFALL_THRESHOLD = 100f;
+		public static readonly float FREEFALL_THRESHOLD = 1200f;
 		public static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
 
 		// data members
