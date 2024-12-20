@@ -58,12 +58,22 @@ texture = SubResource("PlaceholderTexture2D_qig20")
 
 [node name="Slant" type="StaticBody2D" parent="."]
 position = Vector2(593, 114)
-rotation = 0.598648
+rotation = 0.523599
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slant"]
 shape = SubResource("RectangleShape2D_warui")
 
 [node name="Sprite2D" type="Sprite2D" parent="Slant"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant2" type="StaticBody2D" parent="."]
+position = Vector2(1676, 116)
+rotation = -0.872665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slant2"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slant2"]
 texture = SubResource("PlaceholderTexture2D_atewy")
 
 [editable path="Player"]
