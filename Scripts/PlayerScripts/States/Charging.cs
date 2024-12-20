@@ -50,11 +50,13 @@ namespace JumpHero
 
 		private void ChargeJump(float delta)
 		{
-			const int xIncreaseRate = 375, yIncreaseRate = 500;
-			_jumpXComponent += 	xIncreaseRate * delta;
-			_jumpYComponent += yIncreaseRate * delta;
+			const float chargeRate = 1f;
+			_jumpXComponent += 	chargeRate * MAX_X_COMPONENT * delta;
+			_jumpYComponent += chargeRate * MAX_Y_COMPONENT * delta;
 			if (_jumpXComponent > MAX_X_COMPONENT) _jumpXComponent = MAX_X_COMPONENT;
 			if (_jumpYComponent > MAX_Y_COMPONENT) _jumpYComponent = MAX_Y_COMPONENT;
+
+			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
 		}
     }
 }
