@@ -5,6 +5,9 @@ namespace JumpHero
 {
 	public partial class Airborne : State
 	{
+        private const float MIN_BOUNCE_X_VELOCITY_THRESHOLD = 100f;
+        private const float IMPULSE_STRENGTH = 100f;
+
         public override void EnterState()
         {
             
@@ -53,7 +56,19 @@ namespace JumpHero
                 float surfaceAngle = Mathf.Abs(90 + Mathf.RadToDeg(surfaceNormal.Angle()));
                 if (surfaceAngle >= 45 || surfaceAngle == 90 || surfaceAngle == 270)
                 {
-                    player.Velocity = player.Velocity.Bounce(surfaceNormal) * player.Elasticity;
+                    Vector2 reflectedVelocity = player.Velocity.Bounce(surfaceNormal) * player.Elasticity;
+                    if (surfaceAngle == 90 || surfaceAngle == 270)
+                    {
+                        GD.Print(Mathf.Abs(reflectedVelocity.X));
+                        if (Mathf.Abs(reflectedVelocity.X) < MIN_BOUNCE_X_VELOCITY_THRESHOLD)
+                        {
+                            reflectedVelocity.X = Mathf.Sign(reflectedVelocity.X) * MIN_BOUNCE_X_VELOCITY_THRESHOLD;
+                            GD.Print(Mathf.Abs(reflectedVelocity.X));
+                        }
+                        Vector2 impulse = surfaceNormal * IMPULSE_STRENGTH;
+                        reflectedVelocity += impulse;
+                    }
+                    player.Velocity = reflectedVelocity;
                 }
             }
         }
