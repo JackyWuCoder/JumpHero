@@ -22,22 +22,22 @@ namespace JumpHero
 			_currentState = GetState(PlayerState.GROUNDED);
 		}
 
-        public override void _Process(double delta)
-        {
-            _currentState.Process(delta);
-        }
+		public override void _Process(double delta)
+		{
+			_currentState.Process(delta);
+		}
 
-        public override void _PhysicsProcess(double delta)
-        {
-            _currentState.PhysicsProcess(delta);
-        }
+		public override void _PhysicsProcess(double delta)
+		{
+			_currentState.PhysicsProcess(delta);
+		}
 
-        public override void _Input(InputEvent @event)
-        {
-            _currentState.InputProcess(@event);
-        }
+		public override void _Input(InputEvent @event)
+		{
+			_currentState.InputProcess(@event);
+		}
 
-        public void ChangeState(PlayerState newState)
+		public void ChangeState(PlayerState newState)
 		{
 			if (State == newState) return;
 
