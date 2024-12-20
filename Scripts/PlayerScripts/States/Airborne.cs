@@ -59,11 +59,9 @@ namespace JumpHero
                     Vector2 reflectedVelocity = player.Velocity.Bounce(surfaceNormal) * player.Elasticity;
                     if (surfaceAngle == 90 || surfaceAngle == 270)
                     {
-                        GD.Print(Mathf.Abs(reflectedVelocity.X));
                         if (Mathf.Abs(reflectedVelocity.X) < MIN_BOUNCE_X_VELOCITY_THRESHOLD)
                         {
                             reflectedVelocity.X = Mathf.Sign(reflectedVelocity.X) * MIN_BOUNCE_X_VELOCITY_THRESHOLD;
-                            GD.Print(Mathf.Abs(reflectedVelocity.X));
                         }
                         Vector2 impulse = surfaceNormal * IMPULSE_STRENGTH;
                         reflectedVelocity += impulse;
