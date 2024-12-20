@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyqm2jhmho4gp"]
+[gd_scene load_steps=10 format=3 uid="uid://dyqm2jhmho4gp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerSpriteEffect.cs" id="2_62dj2"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerStateManager.cs" id="2_mh5yt"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Airborne.cs" id="3_xaqjd"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Freefall.cs" id="4_6bp1p"]
@@ -22,6 +23,7 @@ shape = SubResource("RectangleShape2D_um7ai")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_sb33s")
+script = ExtResource("2_62dj2")
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 

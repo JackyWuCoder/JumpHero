@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_warui")
 texture = SubResource("PlaceholderTexture2D_atewy")
 
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
-position = Vector2(465, -63)
+position = Vector2(620, 596)
 
 [node name="Testing Camera2D" type="Camera2D" parent="Player"]
 
