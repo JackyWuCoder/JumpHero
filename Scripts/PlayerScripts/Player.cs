@@ -9,6 +9,7 @@ namespace JumpHero
 		// signals
 		[Signal] public delegate void OnStateChangeEventHandler();
 		[Signal] public delegate void OnDirectionChangeEventHandler();
+		[Signal] public delegate void OnChargeChangeEventHandler();
 
 		// player component node names
 		private static readonly string SLOPE_DETECTOR_NODE_NAME = "SlopeDetector";
@@ -40,12 +41,9 @@ namespace JumpHero
 			EmitSignal(SignalName.OnDirectionChange, isRight);
 		}
 
-		public float GetSlopeAngle()
+		public void EmitChargePercentage(float percentage)
 		{
-			// TODO: Add ability to calculate slope angle player is on, such that when landing on a slope the player will slide off the slope instead of landing on it directly
-			Vector2 surfaceNormal = GetFloorNormal();
-			float angle = surfaceNormal.AngleTo(Vector2.Up);
-			return angle;
+			EmitSignal(SignalName.OnChargeChange, percentage);
 		}
 	}
 }

@@ -27,15 +27,6 @@ namespace JumpHero
 				stateManager.ChangeState(PlayerStateManager.PlayerState.AIRBORNE);
 				return;
 			}
-			float slopeAngle = player.GetSlopeAngle();
-			//if (slopeAngle > slopeThreshold)
-			//{
-				//ApplySlopeSliding()
-			//}
-			//else {
-				//ReadInputs();
-				//player.MoveAndSlide();
-			//}
 			ReadInputs();
 			player.MoveAndSlide();
 		}
@@ -63,10 +54,5 @@ namespace JumpHero
 			
 			if (moveDirection != 0) player.SetDirection(moveDirection == 1);
 		}
-		
-		//private void ApplySlopeSliding()
-		//{
-			//
-		//}
 	}
 }
