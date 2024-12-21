@@ -20,12 +20,19 @@ public partial class LevelManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        if ((Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2)) && !_isTransitioning) {
+        if (((Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2)) && !_isTransitioning) ||
+            (Player.Position.Y > (Camera.Position.Y - _cameraYOffset / 2)) && !_isTransitioning) 
+        {
             StartLevelTransition();
         }
         if (_isTransitioning)
         {
-            Camera.Position = new Vector2(Camera.Position.X, Camera.Position.Y + _cameraYOffset);
+            if (Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2)) {
+                Camera.Position = new Vector2(Camera.Position.X, Camera.Position.Y + _cameraYOffset);
+            }
+            else {
+                Camera.Position = new Vector2(Camera.Position.X, Camera.Position.Y - _cameraYOffset);
+            }
             _isTransitioning = false;
         }
 	}
