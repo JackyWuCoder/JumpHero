@@ -18,13 +18,14 @@ namespace JumpHero
 
 		// static constants
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
-		public static readonly float FREEFALL_THRESHOLD = 1200f;
+		public static readonly float FREEFALL_THRESHOLD = 800f;
 		public static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
 
 		// data members
 		public float Gravity { get; private set; } = DEFAULT_GRAVITY;
 		public float MoveSpeed { get; private set; } = 150f;
 		public bool IsFacingRight { get; private set; } = false;
+		public bool IsWalking { get; private set; } = false;
 		public float Elasticity { get; private set; } = 0.8f;
 		public PlayerStateManager.PlayerState State { get { return _stateManager.State; } }
 		private PlayerStateManager _stateManager;
@@ -37,12 +38,13 @@ namespace JumpHero
 
 		public void StartWalk(bool isWalking)
 		{
+			IsWalking = isWalking;
 			EmitSignal(SignalName.OnWalk, isWalking);
 		}
 
-		public void NotifyCollision(KinematicCollision2D collision)
+		public void NotifyCollision()
 		{
-			// TODO: call this from states to notify that collision occurred and send the collider object through
+			EmitSignal(SignalName.OnCollision, GetSlideCollision(0));
 		}
 
 		public void NotifyStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
