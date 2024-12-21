@@ -41,6 +41,9 @@ namespace JumpHero
                 
             else if (player.Velocity.Y > Player.FREEFALL_THRESHOLD)
                 stateManager.ChangeState(PlayerStateManager.PlayerState.FREEFALL);
+            
+            else if (player.GetSlideCollisionCount() > 0)
+                player.NotifyCollision();
         }
 
         public override void InputProcess(InputEvent inputEvent)

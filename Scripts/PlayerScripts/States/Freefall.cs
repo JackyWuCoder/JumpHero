@@ -33,6 +33,9 @@ namespace JumpHero
 
 			if (player.IsOnFloor())
 					stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);
+
+            else if (player.GetSlideCollisionCount() > 0)
+                player.NotifyCollision();
 		}
 
         public override void InputProcess(InputEvent inputEvent)
