@@ -101,8 +101,9 @@ namespace JumpHero
 
 		private void VibrateSprite()
 		{
-			float randomX = (float) GD.RandRange(-0.5, 0.5), randomY = (float) GD.RandRange(-0.5, 0.5);
-			const float offsetLimit = 0.6f;
+			const float range = 0.8f;
+			float randomX = (float) GD.RandRange(-range, range), randomY = (float) GD.RandRange(-range, range);
+			const float offsetLimit = 1.2f;
 			float squashOffset = _spriteSize.Y / 3;
 			Position = new Vector2
 			(
