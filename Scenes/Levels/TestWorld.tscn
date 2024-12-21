@@ -132,13 +132,21 @@ shape = SubResource("RectangleShape2D_6e07p")
 texture = SubResource("PlaceholderTexture2D_qig20")
 
 [node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2(72, -700)
+position = Vector2(544, -352)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 shape = SubResource("RectangleShape2D_warui")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform2"]
-position = Vector2(668, 336)
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform7" type="StaticBody2D" parent="."]
+position = Vector2(1180, -176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform7"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform7"]
 texture = SubResource("PlaceholderTexture2D_atewy")
 
 [node name="Slant3" type="StaticBody2D" parent="."]
