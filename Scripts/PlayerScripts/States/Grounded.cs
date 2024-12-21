@@ -12,7 +12,7 @@ namespace JumpHero
 
 		public override void ExitState()
 		{
-			
+			player.StartWalk(false);
 		}
 
 		public override void Process(double delta)
@@ -52,7 +52,12 @@ namespace JumpHero
 			if (Input.IsActionPressed(ProjectInputs.RIGHT)) moveDirection += 1;
 			player.Velocity = Vector2.Right * moveDirection * player.MoveSpeed;
 			
-			if (moveDirection != 0) player.SetDirection(moveDirection == 1);
+			if (moveDirection != 0) 
+			{
+				player.SetDirection(moveDirection == 1);
+				player.StartWalk(true);
+			} 
+			else player.StartWalk(false);
 		}
 	}
 }

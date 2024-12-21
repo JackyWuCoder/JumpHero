@@ -10,8 +10,11 @@ namespace JumpHero
 		[Signal] public delegate void OnStateChangeEventHandler();
 		[Signal] public delegate void OnDirectionChangeEventHandler();
 		[Signal] public delegate void OnChargeChangeEventHandler();
+		[Signal] public delegate void OnWalkEventHandler();
+		[Signal] public delegate void OnCollisionEventHandler();
 
 		// player component node names
+		private static readonly string STATE_MANAGER_NODE_NAME = "States";
 
 		// static constants
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
@@ -23,10 +26,23 @@ namespace JumpHero
 		public float MoveSpeed { get; private set; } = 150f;
 		public bool IsFacingRight { get; private set; } = false;
 		public float Elasticity { get; private set; } = 0.8f;
+		public PlayerStateManager.PlayerState State { get { return _stateManager.State; } }
+		private PlayerStateManager _stateManager;
 
 		public override void _Ready()
 		{
+			_stateManager = GetNode<PlayerStateManager>(STATE_MANAGER_NODE_NAME);
 			FloorMaxAngle = SLOPE_ANGLE_THRESHOLD;
+		}
+
+		public void StartWalk(bool isWalking)
+		{
+			EmitSignal(SignalName.OnWalk, isWalking);
+		}
+
+		public void NotifyCollision(KinematicCollision2D collision)
+		{
+			// TODO: call this from states to notify that collision occurred and send the collider object through
 		}
 
 		public void NotifyStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
