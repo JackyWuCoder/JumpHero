@@ -36,6 +36,7 @@ namespace JumpHero
 				)
 			);
 			player.Connect(Player.SignalName.OnWalk, Callable.From((bool isWalking) => OnWalkChange(isWalking)));
+			player.Connect(Player.SignalName.OnCollision, Callable.From((KinematicCollision2D collision) => OnCollision(collision)));
 		}
 
         private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
@@ -45,16 +46,37 @@ namespace JumpHero
 				if (oldState == PlayerStateManager.PlayerState.FREEFALL)
 				{
 					_animation.Play(RESET);
-					_animation.Play(TRIP);
+					_animation.Queue(TRIP);
 				}
-				else _animation.Play(SQUASH_BOTTOM);
+				else _animation.Play(SQUASH_BOTTOM); // previous state is airborne
 			}
 			else if (newState == PlayerStateManager.PlayerState.FREEFALL) _animation.Play(FALLING);
 		}
 
+		private void OnCollision(KinematicCollision2D collision)
+		{
+			float collisionAngle = collision.GetNormal().Angle();
+			// Uses high tolerance value to allow bounce visuals on more varied angles rather than perpendicular only
+			float equalityTolerance = Mathf.DegToRad(Player.SLOPE_ANGLE_THRESHOLD);
+
+			if (Mathf.IsEqualApprox(collisionAngle, 0, equalityTolerance))
+				_animation.Play(SQUASH_LEFT);
+
+			else if (Mathf.IsEqualApprox(collisionAngle, Mathf.Pi / 2, equalityTolerance)) 
+				_animation.Play(SQUASH_TOP);
+
+			else if (Mathf.IsEqualApprox(collisionAngle, Mathf.Pi, equalityTolerance))
+				_animation.Play(SQUASH_RIGHT);
+		}
+
 		private void OnWalkChange(bool isWalking)
 		{
-			if (isWalking) _animation.Play(WALK);
+			if (_animation.AssignedAnimation == TRIP && isWalking)
+			{
+				_animation.Play(STAND);
+				_animation.Queue(WALK);
+			}
+			else if (isWalking) _animation.Queue(WALK);
 			else _animation.Play(RESET);
 		}
 
