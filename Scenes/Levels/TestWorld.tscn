@@ -62,6 +62,46 @@ shape = SubResource("RectangleShape2D_warui")
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
 texture = SubResource("PlaceholderTexture2D_atewy")
 
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(1260, 271)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(1404, 187)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform5" type="StaticBody2D" parent="."]
+position = Vector2(1576, 91)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform5"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform6" type="StaticBody2D" parent="."]
+position = Vector2(1704, -17)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform6"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform6"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
 [node name="Slant" type="StaticBody2D" parent="."]
 position = Vector2(320, 114)
 rotation = 0.523599
@@ -92,7 +132,7 @@ shape = SubResource("RectangleShape2D_6e07p")
 texture = SubResource("PlaceholderTexture2D_qig20")
 
 [node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2(1020, -749)
+position = Vector2(72, -700)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 shape = SubResource("RectangleShape2D_warui")
