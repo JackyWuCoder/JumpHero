@@ -53,25 +53,39 @@ namespace JumpHero
 
         private void BounceOffWall()
         {
-            if(player.GetSlideCollisionCount() > 0) {
-                var collision = player.GetSlideCollision(0);
-                Vector2 surfaceNormal = collision.GetNormal();
-                float surfaceAngle = Mathf.Abs(90 + Mathf.RadToDeg(surfaceNormal.Angle()));
-                if (surfaceAngle >= 45 || surfaceAngle == 90 || surfaceAngle == 270)
-                {
-                    Vector2 reflectedVelocity = player.Velocity.Bounce(surfaceNormal) * player.Elasticity;
-                    if (surfaceAngle == 90 || surfaceAngle == 270)
-                    {
-                        if (Mathf.Abs(reflectedVelocity.X) < MIN_BOUNCE_X_VELOCITY_THRESHOLD)
-                        {
-                            reflectedVelocity.X = Mathf.Sign(reflectedVelocity.X) * MIN_BOUNCE_X_VELOCITY_THRESHOLD;
-                        }
-                        Vector2 impulse = surfaceNormal * IMPULSE_STRENGTH;
-                        reflectedVelocity += impulse;
-                    }
-                    player.Velocity = reflectedVelocity;
-                }
+            // no collisions during player move
+            if (player.GetSlideCollisionCount() == 0) 
+                return;
+        
+            var collision = player.GetSlideCollision(0);
+            Vector2 surfaceNormal = collision.GetNormal();
+            float surfaceAngle = Mathf.Abs(90 + Mathf.RadToDeg(surfaceNormal.Angle()));
+
+            // surface is not steep enough or its not a vertical wall
+            if (surfaceAngle < 45 && surfaceAngle != 90 && surfaceAngle != 270)
+                return;
+
+            // defines the reflected velocity by the surface's normal and loss of energy through player elasticity
+            Vector2 reflectedVelocity = player.Velocity.Bounce(surfaceNormal) * player.Elasticity;
+
+            // if we hit a vertical wall apply an impulse
+            if (surfaceAngle == 90 || surfaceAngle == 270)
+            {
+                reflectedVelocity = AdjustVelocityXForVerticalWallBounce(reflectedVelocity, surfaceNormal);
             }
+
+            player.Velocity = reflectedVelocity;
+        }
+
+        private Vector2 AdjustVelocityXForVerticalWallBounce(Vector2 reflectedVelocity, Vector2 surfaceNormal)
+        {
+            // if the reflected velocity in the x direction is too small set it to a minimum predefined value
+            if (Mathf.Abs(reflectedVelocity.X) < MIN_BOUNCE_X_VELOCITY_THRESHOLD)
+            {
+                reflectedVelocity.X = Mathf.Sign(reflectedVelocity.X) * MIN_BOUNCE_X_VELOCITY_THRESHOLD;
+            }
+            Vector2 impulse = surfaceNormal * IMPULSE_STRENGTH;
+            return reflectedVelocity + impulse;         
         }
     }
 }
