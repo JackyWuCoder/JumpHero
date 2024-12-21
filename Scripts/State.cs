@@ -19,9 +19,11 @@ namespace JumpHero
 		public abstract void EnterState();
 		public abstract void ExitState();
 		public virtual void Process(double delta) {}
-
-		// Default behaviour calculates physics in the air (airborne/freefall)
-		public virtual void PhysicsProcess(double delta) {}
+		public virtual void PhysicsProcess(double delta)
+		{
+			// TODO: Add an environment checker that adjusts player velocity depending on environment hazards
+			// Intended to be called by shared physics processes in all states
+		}
 		public virtual void InputProcess(InputEvent inputEvent) {}
 	}
 }

@@ -28,6 +28,7 @@ namespace JumpHero
 				return;
 			}
 			ReadInputs();
+			base.PhysicsProcess(delta);
 			player.MoveAndSlide();
 		}
 

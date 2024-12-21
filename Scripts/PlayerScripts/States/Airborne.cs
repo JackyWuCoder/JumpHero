@@ -25,16 +25,11 @@ namespace JumpHero
 
         public override void PhysicsProcess(double delta)
         {
-            float velocityXComponent = player.Velocity.X;
             player.MoveAndSlide();
             player.Velocity = new Vector2(player.GetRealVelocity().X, player.Velocity.Y + player.Gravity);
+            base.PhysicsProcess(delta);
 
-            // const float elasticity = 0.8f;
-            if (player.IsOnWallOnly())
-            {
-                BounceOffWall();
-                // player.Velocity += Vector2.Left * velocityXComponent * elasticity;
-            }
+            if (player.IsOnWallOnly()) BounceOffWall();
                 
             if (player.IsOnFloor())
                 stateManager.ChangeState(PlayerStateManager.PlayerState.GROUNDED);

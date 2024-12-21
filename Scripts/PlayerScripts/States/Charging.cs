@@ -34,6 +34,9 @@ namespace JumpHero
 
         public override void PhysicsProcess(double delta)
         {
+			base.PhysicsProcess(delta);
+			player.MoveAndSlide();
+			
             if (!player.IsOnFloor())
 			{
 				stateManager.ChangeState(PlayerStateManager.PlayerState.AIRBORNE);

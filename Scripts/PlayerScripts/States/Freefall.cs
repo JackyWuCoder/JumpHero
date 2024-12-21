@@ -7,7 +7,7 @@ namespace JumpHero
 	{
         public override void EnterState()
         {
-            // TODO: Link up sprite to make it spin in mid-air to simulate losing control in the air
+            
         }
 
         public override void ExitState()
@@ -26,6 +26,7 @@ namespace JumpHero
 			const float gravityBoost = 1.2f;
 			player.MoveAndSlide();
 			player.Velocity = new Vector2(player.GetRealVelocity().X, player.Velocity.Y + player.Gravity * gravityBoost);
+            base.PhysicsProcess(delta);
 
 			const float elasticity = 0.5f;
 			if (player.IsOnWallOnly())
