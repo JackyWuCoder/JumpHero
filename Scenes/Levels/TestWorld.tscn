@@ -82,4 +82,43 @@ shape = SubResource("RectangleShape2D_warui")
 [node name="Sprite2D" type="Sprite2D" parent="Slant2"]
 texture = SubResource("PlaceholderTexture2D_atewy")
 
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(-160, -776)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_6e07p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+texture = SubResource("PlaceholderTexture2D_qig20")
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(1020, -749)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2"]
+position = Vector2(668, 336)
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant3" type="StaticBody2D" parent="."]
+position = Vector2(320, -1006)
+rotation = 0.523599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slant3"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slant3"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant4" type="StaticBody2D" parent="."]
+position = Vector2(1600, -1004)
+rotation = -0.872665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slant4"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slant4"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
 [editable path="Player"]
