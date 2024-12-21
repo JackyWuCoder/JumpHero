@@ -20,43 +20,65 @@ namespace JumpHero
 			);
 		}
 
-		private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
+        public override void _Process(double delta)
+        {
+            
+        }
+
+        private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
 		{
-			// TODO: Implement this part
+			if (newState == PlayerStateManager.PlayerState.GROUNDED)
+			{
+				if (oldState == PlayerStateManager.PlayerState.FREEFALL)
+				{
+
+				}
+				else
+				{
+
+				}
+			}
+			else if (newState == PlayerStateManager.PlayerState.FREEFALL)
+			{
+
+			}
 		}
 
 		private void OnChargeChange(float chargePercent)
 		{
-			// Play stretch animation
-			if (chargePercent == 0) 
-			{
-				Tween tween = CreateTween();
-				tween.TweenProperty(this, nameof(Scale).ToLower(), new Vector2(0.8f, 1.2f), 0.1f);
-				tween.TweenProperty(this, nameof(Scale).ToLower(), Vector2.One, 0.1f);
-				tween.TweenProperty(this, nameof(Position).ToLower(), Vector2.Zero, 0.05f);
-				tween.Play();
-				return;
-			}
+			if (chargePercent == 0) PlayStretchAnimation();
+			else if (chargePercent == 1) VibrateSprite();
+			else SquashSprite(chargePercent);
+		}
 
-			// Play shaking animation
-			if (chargePercent == 1) 
-			{
-				float randomX = (float) GD.RandRange(-0.5, 0.5), randomY = (float) GD.RandRange(-0.5, 0.5);
-				const float offsetLimit = 0.6f;
-				float squashOffset = _spriteSize.Y / 3;
-				Position = new Vector2
-				(
-					Mathf.Clamp(Position.X + randomX, -offsetLimit, offsetLimit),
-					Mathf.Clamp(Position.Y + randomY, -offsetLimit + squashOffset, offsetLimit + squashOffset)
-				);
-				return;
-			}
+		private void PlayStretchAnimation()
+		{
+			Tween tween = CreateTween();
+			tween.TweenProperty(this, nameof(Scale).ToLower(), new Vector2(0.8f, 1.2f), 0.1f);
+			tween.TweenProperty(this, nameof(Scale).ToLower(), Vector2.One, 0.1f);
+			tween.TweenProperty(this, nameof(Position).ToLower(), Vector2.Zero, 0.05f);
+			tween.Play();
+		}
 
-			float scaleY = 1 - (1 - MAX_SQUASH_AMOUNT_Y) * chargePercent;
-			float scaleX = 1 + (MAX_SQUASH_AMOUNT_X - 1) * chargePercent;
+		private void VibrateSprite()
+		{
+			float randomX = (float) GD.RandRange(-0.5, 0.5), randomY = (float) GD.RandRange(-0.5, 0.5);
+			const float offsetLimit = 0.6f;
+			float squashOffset = _spriteSize.Y / 3;
+			Position = new Vector2
+			(
+				Mathf.Clamp(Position.X + randomX, -offsetLimit, offsetLimit),
+				Mathf.Clamp(Position.Y + randomY, -offsetLimit + squashOffset, offsetLimit + squashOffset)
+			);	
+		}
+
+		private void SquashSprite(float squashPercent)
+		{
+			float scaleY = 1 - (1 - MAX_SQUASH_AMOUNT_Y) * squashPercent;
+			float scaleX = 1 + (MAX_SQUASH_AMOUNT_X - 1) * squashPercent;
 
 			// TODO: Figure out how to generalize it
-			float positionY = _spriteSize.Y / 3 * chargePercent;
+			float positionY = _spriteSize.Y / 3 * squashPercent;
 			Scale = new Vector2(scaleX, scaleY);
 			Position = new Vector2(Position.X, positionY);
 		}
