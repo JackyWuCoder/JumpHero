@@ -55,6 +55,9 @@ namespace JumpHero
 
 		private void OnCollision(KinematicCollision2D collision)
 		{
+			// skip squash animations if player is in freefall state
+			if (_animation.CurrentAnimation == FALLING) return;
+
 			float collisionAngle = collision.GetNormal().Angle();
 			// Uses high tolerance value to allow bounce visuals on more varied angles rather than perpendicular only
 			float equalityTolerance = Mathf.DegToRad(Player.SLOPE_ANGLE_THRESHOLD);
