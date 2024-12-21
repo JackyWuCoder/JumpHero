@@ -9,19 +9,23 @@ size = Vector2(1500, 500)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e404b"]
 size = Vector2(1500, 500)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_warui"]
-size = Vector2(500, 25)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atewy"]
-size = Vector2(500, 25)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e07p"]
 size = Vector2(500, 900)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qig20"]
 size = Vector2(500, 900)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_warui"]
+size = Vector2(500, 25)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atewy"]
+size = Vector2(500, 25)
+
 [node name="TestWorld" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(0.5, 0.5)
 
 [node name="LevelManager" type="Node2D" parent="."]
 script = ExtResource("1_t2mjh")
@@ -29,10 +33,8 @@ script = ExtResource("1_t2mjh")
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
 position = Vector2(620, 596)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(500, 875)
+position = Vector2(751, 881)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 texture = SubResource("PlaceholderTexture2D_a7agg")
@@ -41,15 +43,6 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_e404b")
 metadata/_edit_lock_ = true
-
-[node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(1213, 438)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-shape = SubResource("RectangleShape2D_warui")
-
-[node name="Sprite2D" type="Sprite2D" parent="Platform"]
-texture = SubResource("PlaceholderTexture2D_atewy")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(-160, 344)
@@ -60,8 +53,17 @@ shape = SubResource("RectangleShape2D_6e07p")
 [node name="Sprite2D" type="Sprite2D" parent="Wall"]
 texture = SubResource("PlaceholderTexture2D_qig20")
 
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(1020, 371)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
 [node name="Slant" type="StaticBody2D" parent="."]
-position = Vector2(593, 114)
+position = Vector2(320, 114)
 rotation = 0.523599
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slant"]
@@ -71,7 +73,7 @@ shape = SubResource("RectangleShape2D_warui")
 texture = SubResource("PlaceholderTexture2D_atewy")
 
 [node name="Slant2" type="StaticBody2D" parent="."]
-position = Vector2(1676, 116)
+position = Vector2(1600, 116)
 rotation = -0.872665
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slant2"]
