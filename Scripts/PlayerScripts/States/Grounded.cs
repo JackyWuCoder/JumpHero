@@ -56,8 +56,8 @@ namespace JumpHero
 			{
 				player.SetDirection(moveDirection == 1);
 				player.StartWalk(true);
-			} 
-			else player.StartWalk(false);
+			}
+			else if (player.IsWalking) player.StartWalk(false);
 		}
 	}
 }
