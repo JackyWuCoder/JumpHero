@@ -5,12 +5,29 @@ namespace JumpHero
 {
 	public partial class PlayerSpriteEffect : Sprite2D
 	{
-		[Export] private Vector2 _spriteSize = new(50, 50);
+		// animation names
+		private static readonly string SQUASH_BOTTOM = "SquashBottom"; // played when soft landing (airborne -> grounded)
+		private static readonly string SQUASH_LEFT = "SquashLeft"; // played when hitting left wall
+		private static readonly string SQUASH_RIGHT = "SquashRight"; // played when hitting right wall
+		private static readonly string SQUASH_TOP = "SquashTop"; // played when hitting ceiling
+		private static readonly string STAND = "Stand"; // played when input made after hard landing
+		private static readonly string TRIP = "Trip"; // played when hard landing (freefall -> grounded)
+		private static readonly string WALK = "Walk"; // played when moving left and right on the ground
+		private static readonly string FALLING = "Falling"; // played when in freefall state
+		private static readonly string RESET = "RESET"; // played when sprite properties need to be reset
+
+		// static constants
+		private static readonly string ANIMATION_NODE_NAME = "Animator";
 		private static readonly float MAX_SQUASH_AMOUNT_Y = 0.4f;
 		private static readonly float MAX_SQUASH_AMOUNT_X = 1.3f;
 
+		// data members
+		[Export] private Vector2 _spriteSize = new(50, 50);
+		private AnimationPlayer _animation;
+
 		public override void _Ready()
 		{
+			_animation = GetNode<AnimationPlayer>(ANIMATION_NODE_NAME);
 			Player player = GetOwner<Player>();
 			player.Connect(Player.SignalName.OnChargeChange, Callable.From((float chargePercent) => OnChargeChange(chargePercent)));
 			player.Connect(Player.SignalName.OnStateChange, 
@@ -18,12 +35,8 @@ namespace JumpHero
 					(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState) => OnStateChange(oldState, newState)
 				)
 			);
+			player.Connect(Player.SignalName.OnWalk, Callable.From((bool isWalking) => OnWalkChange(isWalking)));
 		}
-
-        public override void _Process(double delta)
-        {
-            
-        }
 
         private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
 		{
@@ -31,17 +44,18 @@ namespace JumpHero
 			{
 				if (oldState == PlayerStateManager.PlayerState.FREEFALL)
 				{
-
+					_animation.Play(RESET);
+					_animation.Play(TRIP);
 				}
-				else
-				{
-
-				}
+				else _animation.Play(SQUASH_BOTTOM);
 			}
-			else if (newState == PlayerStateManager.PlayerState.FREEFALL)
-			{
+			else if (newState == PlayerStateManager.PlayerState.FREEFALL) _animation.Play(FALLING);
+		}
 
-			}
+		private void OnWalkChange(bool isWalking)
+		{
+			if (isWalking) _animation.Play(WALK);
+			else _animation.Play(RESET);
 		}
 
 		private void OnChargeChange(float chargePercent)
