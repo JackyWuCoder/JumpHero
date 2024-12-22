@@ -23,6 +23,7 @@ namespace JumpHero
         {
 			int jumpDirection = player.IsFacingRight ? 1 : -1;
 			player.Velocity = Vector2.Up * _jumpYComponent + Vector2.Right * jumpDirection * _jumpXComponent;
+			player.NotifyJump();
 			player.EmitChargePercentage(0);
         }
 

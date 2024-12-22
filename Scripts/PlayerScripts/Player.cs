@@ -11,6 +11,7 @@ namespace JumpHero
 		[Signal] public delegate void OnDirectionChangeEventHandler();
 		[Signal] public delegate void OnChargeChangeEventHandler();
 		[Signal] public delegate void OnWalkEventHandler();
+		[Signal] public delegate void OnJumpEventHandler();
 		[Signal] public delegate void OnCollisionEventHandler();
 
 		// player component node names
@@ -34,6 +35,11 @@ namespace JumpHero
 		{
 			_stateManager = GetNode<PlayerStateManager>(STATE_MANAGER_NODE_NAME);
 			FloorMaxAngle = SLOPE_ANGLE_THRESHOLD;
+		}
+
+		public void NotifyJump()
+		{
+			EmitSignal(SignalName.OnJump);
 		}
 
 		public void StartWalk(bool isWalking)
