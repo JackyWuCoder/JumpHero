@@ -45,7 +45,7 @@ namespace JumpHero
 		private void SwitchStreamAndPlay(string audioName)
 		{
 			Stream = audioMap[audioName];
-			PitchScale = (float) GD.RandRange(0.9f, 1.1f); // Adds slight variation to sound clips
+			PitchScale = (float) GD.RandRange(0.95f, 1.05f); // Adds slight variation to sound clips
 			Play();
 		}
 
