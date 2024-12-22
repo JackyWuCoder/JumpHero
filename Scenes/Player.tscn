@@ -1,12 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyqm2jhmho4gp"]
+[gd_scene load_steps=27 format=3 uid="uid://dyqm2jhmho4gp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerSpriteEffect.cs" id="2_62dj2"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerStateManager.cs" id="2_mh5yt"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerSoundManager.cs" id="3_q5cva"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Airborne.cs" id="3_xaqjd"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Freefall.cs" id="4_6bp1p"]
+[ext_resource type="AudioStream" uid="uid://b2dn3htkv7t65" path="res://Assets/Sounds/PlayerSounds/ChargeLoop.mp3" id="4_cgjga"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Grounded.cs" id="5_7ey8u"]
+[ext_resource type="AudioStream" uid="uid://4pmvluyyt18q" path="res://Assets/Sounds/PlayerSounds/Collide.mp3" id="5_onej0"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Charging.cs" id="6_551xx"]
+[ext_resource type="AudioStream" uid="uid://gqhdcqu62gew" path="res://Assets/Sounds/PlayerSounds/Jump.mp3" id="6_re2jb"]
+[ext_resource type="AudioStream" uid="uid://cgd3l1hjxici0" path="res://Assets/Sounds/PlayerSounds/Trip.mp3" id="7_opyn6"]
+[ext_resource type="AudioStream" uid="uid://b5u7u2b64cj3" path="res://Assets/Sounds/PlayerSounds/WindUp.mp3" id="8_tytma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um7ai"]
 size = Vector2(50, 50)
@@ -287,6 +293,8 @@ _data = {
 "Walk": SubResource("Animation_phui3")
 }
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_83e2t"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_f4ivg")
@@ -304,6 +312,9 @@ libraries = {
 }
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamInteractive_83e2t")
+script = ExtResource("3_q5cva")
+audioFiles = Array[AudioStream]([ExtResource("4_cgjga"), ExtResource("5_onej0"), ExtResource("6_re2jb"), ExtResource("7_opyn6"), ExtResource("8_tytma")])
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 emitting = false
