@@ -14,8 +14,6 @@ namespace JumpHero
 
         // Charge bar UI
         private float _maxCharge = 100f;
-        private float _chargeSpeed = 50f;
-        private float _currentCharge = 0f;
         private bool _isCharging = false;
         private ProgressBar _chargeBar;
 
@@ -30,13 +28,19 @@ namespace JumpHero
             if (_chargeBar == null)
                 GD.PrintErr("Charge bar not found!");
             else 
-                _chargeBar.Value = _currentCharge;
+                _chargeBar.Visible = true;
+                _chargeBar.Value = 0;
         }
 
         public override void ExitState()
         {
 			int jumpDirection = player.IsFacingRight ? 1 : -1;
 			player.Velocity = Vector2.Up * _jumpYComponent + Vector2.Right * jumpDirection * _jumpXComponent;
+
+            // Hide charge bar UI
+            if (_chargeBar != null)
+                _chargeBar.Visible = false;
+
 			player.NotifyJump();
 			player.EmitChargePercentage(0);
         }
