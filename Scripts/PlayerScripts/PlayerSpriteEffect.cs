@@ -25,6 +25,7 @@ namespace JumpHero
 		private static readonly float MAX_SQUASH_AMOUNT_X = 1.3f;
 
 		// data members
+		public Color Color { get; private set; } = DEFAULT_PLAYER_COLOR; // TODO: Determine if this is necessary
 		[Export] private Vector2 _spriteSize = new(50, 50);
 		private AnimationPlayer _animation;
 
@@ -47,10 +48,10 @@ namespace JumpHero
 			Modulate = DEFAULT_PLAYER_COLOR;
 		}
 
-		// 5:31am loud bang sound
 		public void SetColor(Color color)
 		{
 			Modulate = color;
+			Color = color;
 		}
 
         private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
