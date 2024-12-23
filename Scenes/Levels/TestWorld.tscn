@@ -177,9 +177,9 @@ texture = SubResource("PlaceholderTexture2D_atewy")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 485.0
-offset_top = 487.0
-offset_right = 489.0
-offset_bottom = 514.0
+offset_left = 598.0
+offset_top = 304.0
+offset_right = 602.0
+offset_bottom = 331.0
 
 [editable path="Player"]

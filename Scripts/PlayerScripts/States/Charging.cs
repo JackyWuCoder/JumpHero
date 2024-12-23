@@ -30,6 +30,8 @@ namespace JumpHero
             else 
                 _chargeBar.Visible = true;
                 _chargeBar.Value = 0;
+
+            UpdateChargeBarPosition();
         }
 
         public override void ExitState()
@@ -92,5 +94,14 @@ namespace JumpHero
 
 			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
 		}
+
+        private void UpdateChargeBarPosition()
+        {
+            if (_chargeBar != null && player != null)
+            {
+                float offsetX = player.IsFacingRight ? 50f : -50f;
+                _chargeBar.GlobalPosition = player.GlobalPosition + new Vector2(offsetX, 0);
+            }
+        }
     }
 }
