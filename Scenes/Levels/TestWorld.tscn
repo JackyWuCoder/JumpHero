@@ -174,4 +174,10 @@ shape = SubResource("RectangleShape2D_warui")
 [node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Slant4"]
 texture = SubResource("PlaceholderTexture2D_atewy")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 4.0
+offset_bottom = 27.0
+
 [editable path="Player"]

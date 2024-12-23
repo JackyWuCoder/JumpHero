@@ -27,7 +27,10 @@ namespace JumpHero
 
             // Get a reference to the charge bar
             _chargeBar = GetNode<ProgressBar>("/root/CanvasLayer/ProgressBar");
-            _chargeBar.Value = _currentCharge;
+            if (_chargeBar == null)
+                GD.PrintErr("Charge bar not found!");
+            else 
+                _chargeBar.Value = _currentCharge;
         }
 
         public override void ExitState()
