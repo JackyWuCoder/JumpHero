@@ -16,7 +16,6 @@ namespace JumpHero
         private float _maxCharge = 100f;
         private bool _isCharging = false;
         private ProgressBar _chargeBar;
-        private Camera2D _camera;
 
 		public override void EnterState()
 		{
@@ -24,19 +23,7 @@ namespace JumpHero
 			_jumpXComponent = STARTING_X_COMPONENT;
 			_jumpYComponent = STARTING_Y_COMPONENT;
 
-            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/Player/ProgressBar");
-            if (_chargeBar == null)
-                GD.PrintErr("Charge bar not found!");
-            else
-            {
-                _chargeBar.Visible = true;
-                _chargeBar.Value = 0;
-            }
-
-            _camera = GetNode<Camera2D>("/root/TestWorld/Camera2D");
-            if (_camera == null)
-                GD.PrintErr("Camera not found!");
-
+            ResetChargeBarValues();
             UpdateChargeBarPosition();
         }
 
@@ -87,22 +74,31 @@ namespace JumpHero
 			if (_jumpXComponent > MAX_X_COMPONENT) _jumpXComponent = MAX_X_COMPONENT;
 			if (_jumpYComponent > MAX_Y_COMPONENT) _jumpYComponent = MAX_Y_COMPONENT;
 
-            bool isChargeComplete = (_jumpXComponent >= MAX_X_COMPONENT) && (_jumpYComponent >= MAX_Y_COMPONENT);
+            UpdateChargeBarUI();
 
-            // Update the charge bar UI
+			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
+		}
+
+        private void ResetChargeBarValues()
+        {
+            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/Player/ProgressBar");
+            if (_chargeBar == null)
+                GD.PrintErr("Charge bar not found!");
+            else
+            {
+                _chargeBar.Visible = true;
+                _chargeBar.Value = 0;
+            }
+        }
+
+        private void UpdateChargeBarUI()
+        {
             if (_chargeBar != null)
             {
                 _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
                 _chargeBar.Modulate = GetInterpolatedColor((float)_chargeBar.Value);
-                var progressBarFill = _chargeBar.GetNode<Panel>("Panel");
-                if (progressBarFill != null)
-                {
-                    progressBarFill.Visible = false;
-                }
             }
-
-			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
-		}
+        }
 
         private void UpdateChargeBarPosition()
         {
