@@ -16,6 +16,7 @@ namespace JumpHero
         private float _maxCharge = 100f;
         private bool _isCharging = false;
         private ProgressBar _chargeBar;
+        private Camera2D _camera;
 
 		public override void EnterState()
 		{
@@ -23,7 +24,6 @@ namespace JumpHero
 			_jumpXComponent = STARTING_X_COMPONENT;
 			_jumpYComponent = STARTING_Y_COMPONENT;
 
-            // Get a reference to the charge bar
             _chargeBar = GetNode<ProgressBar>("/root/TestWorld/CanvasLayer/ProgressBar");
             if (_chargeBar == null)
                 GD.PrintErr("Charge bar not found!");
@@ -31,6 +31,11 @@ namespace JumpHero
                 _chargeBar.Visible = true;
                 _chargeBar.Value = 0;
 
+            _camera = GetNode<Camera2D>("/root/TestWorld/Camera2D");
+            if (_camera == null)
+                GD.PrintErr("Camera not found!");
+
+            // Relative to camera view
             UpdateChargeBarPosition();
         }
 
@@ -99,8 +104,7 @@ namespace JumpHero
         {
             if (_chargeBar != null && player != null)
             {
-                float offsetX = player.IsFacingRight ? 50f : -50f;
-                _chargeBar.GlobalPosition = player.GlobalPosition + new Vector2(offsetX, 0);
+            
             }
         }
     }
