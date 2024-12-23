@@ -26,7 +26,7 @@ namespace JumpHero
 			_jumpYComponent = STARTING_Y_COMPONENT;
 
             // Get a reference to the charge bar
-            _chargeBar = GetNode<ProgressBar>("/root/CanvasLayer/ProgressBar");
+            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/CanvasLayer/ProgressBar");
             if (_chargeBar == null)
                 GD.PrintErr("Charge bar not found!");
             else 
