@@ -7,7 +7,7 @@ public partial class LevelManager : Node
     public Camera2D Camera { get; private set; }
     public Player Player { get; private set; }
 
-    private float _cameraYOffset = -1296f; // Viewport Dimensions (1152 x 648)
+    private float _cameraYOffset = -1296f; // Viewport Dimensions (1152 x 648) --> Camera Dimensions (2304 x 1296)
     private bool _isTransitioning = false;
 
 	// Called when the node enters the scene tree for the first time.

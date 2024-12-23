@@ -24,18 +24,19 @@ namespace JumpHero
 			_jumpXComponent = STARTING_X_COMPONENT;
 			_jumpYComponent = STARTING_Y_COMPONENT;
 
-            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/CanvasLayer/ProgressBar");
+            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/Player/ProgressBar");
             if (_chargeBar == null)
                 GD.PrintErr("Charge bar not found!");
-            else 
+            else
+            {
                 _chargeBar.Visible = true;
                 _chargeBar.Value = 0;
+            }
 
             _camera = GetNode<Camera2D>("/root/TestWorld/Camera2D");
             if (_camera == null)
                 GD.PrintErr("Camera not found!");
 
-            // Relative to camera view
             UpdateChargeBarPosition();
         }
 
@@ -104,7 +105,13 @@ namespace JumpHero
         {
             if (_chargeBar != null && player != null)
             {
-            
+                _chargeBar.Position = new Vector2(0, 0);
+                float offsetX = 50f;
+                float offsetY = 25f;
+                if (player.IsFacingRight)
+                    _chargeBar.Position += new Vector2(offsetX, -offsetY);
+                else
+                    _chargeBar.Position += new Vector2(-offsetX, -offsetY);
             }
         }
     }

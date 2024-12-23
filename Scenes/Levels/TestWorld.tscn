@@ -25,17 +25,22 @@ size = Vector2(500, 25)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
+zoom = Vector2(0.5, 0.5)
 
 [node name="LevelManager" type="Node2D" parent="."]
 script = ExtResource("1_t2mjh")
 
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
-position = Vector2(513, 356)
-scale = Vector2(0.5, 0.5)
+position = Vector2(620, 596)
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = 92.0
+offset_top = -26.0
+offset_right = 96.0
+offset_bottom = 1.0
+scale = Vector2(1.93329, 1.93329)
 
 [node name="Level1Environment" type="Node2D" parent="."]
-position = Vector2(207, 109)
-scale = Vector2(0.5, 0.5)
 
 [node name="Floor" type="StaticBody2D" parent="Level1Environment"]
 position = Vector2(751, 881)
@@ -137,8 +142,6 @@ shape = SubResource("RectangleShape2D_warui")
 texture = SubResource("PlaceholderTexture2D_atewy")
 
 [node name="Level2Environment" type="Node2D" parent="."]
-position = Vector2(207, 109)
-scale = Vector2(0.5, 0.5)
 
 [node name="Wall2" type="StaticBody2D" parent="Level2Environment"]
 position = Vector2(-160, -776)
@@ -177,13 +180,5 @@ shape = SubResource("RectangleShape2D_warui")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Slant4"]
 texture = SubResource("PlaceholderTexture2D_atewy")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 436.0
-offset_top = 331.0
-offset_right = 440.0
-offset_bottom = 358.0
 
 [editable path="Player"]
