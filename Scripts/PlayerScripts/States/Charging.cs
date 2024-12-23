@@ -96,7 +96,10 @@ namespace JumpHero
 
             // Update the charge bar UI
             if (_chargeBar != null)
+            {
                 _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
+                _chargeBar.Modulate = GetInterpolatedColor((float)_chargeBar.Value);
+            }
 
 			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
 		}
@@ -113,6 +116,18 @@ namespace JumpHero
                 else
                     _chargeBar.Position += new Vector2(-offsetX, -offsetY);
             }
+        }
+
+        private Color GetInterpolatedColor(float percentage)
+        {
+            Color startColor = new Color(0, 1, 0); // Green
+            Color middleColor = new Color(1, 1, 0); // Yellow
+            Color endColor = new Color(1, 0, 0); // Red
+
+            if (percentage < 50f)
+                return startColor.Lerp(middleColor, percentage / 50f);
+            else 
+                return middleColor.Lerp(endColor, (percentage - 50) / 50f);
         }
     }
 }
