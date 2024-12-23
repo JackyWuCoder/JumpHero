@@ -89,16 +89,16 @@ namespace JumpHero
 
             bool isChargeComplete = (_jumpXComponent >= MAX_X_COMPONENT) && (_jumpYComponent >= MAX_Y_COMPONENT);
 
-            if (isChargeComplete && _chargeBar != null)
-            {
-                _chargeBar.Modulate = new Color(1, 0, 0);
-            }
-
             // Update the charge bar UI
             if (_chargeBar != null)
             {
                 _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
                 _chargeBar.Modulate = GetInterpolatedColor((float)_chargeBar.Value);
+                var progressBarFill = _chargeBar.GetNode<Panel>("Panel");
+                if (progressBarFill != null)
+                {
+                    progressBarFill.Visible = false;
+                }
             }
 
 			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
@@ -109,7 +109,7 @@ namespace JumpHero
             if (_chargeBar != null && player != null)
             {
                 _chargeBar.Position = new Vector2(0, 0);
-                float offsetX = 50f;
+                float offsetX = 69f;
                 float offsetY = 25f;
                 if (player.IsFacingRight)
                     _chargeBar.Position += new Vector2(offsetX, -offsetY);
