@@ -43,8 +43,11 @@ namespace JumpHero
 				stateManager.ChangeState(PlayerStateManager.PlayerState.AIRBORNE);
 				return;
 			}
-			if (Input.IsActionJustReleased(ProjectInputs.JUMP)) 
+			if (Input.IsActionJustReleased(ProjectInputs.JUMP))
+			{
 				stateManager.ChangeState(PlayerStateManager.PlayerState.AIRBORNE);
+				return;
+			}
 			ChargeJump((float) delta);
         }
 
