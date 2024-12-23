@@ -31,15 +31,7 @@ namespace JumpHero
 
 		private void OnCollide(KinematicCollision2D collision)
 		{
-			// TODO: Code was taken from PlayerSpriteEffect, find a way to make it not duplicate code
-			float collisionAngle = collision.GetNormal().Angle();
-			// Uses high tolerance value to allow bounce visuals on more varied angles rather than perpendicular only
-			float equalityTolerance = Mathf.DegToRad(Player.SLOPE_ANGLE_THRESHOLD);
-
-			if (Mathf.IsEqualApprox(collisionAngle, 0, equalityTolerance) ||
-				Mathf.IsEqualApprox(collisionAngle, Mathf.Pi / 2, equalityTolerance) ||
-				Mathf.IsEqualApprox(collisionAngle, Mathf.Pi, equalityTolerance)) 
-				PlayAudio(COLLIDE_SFX);
+			if (CalculationHelper.IsValidCollider(collision)) PlayAudio(COLLIDE_SFX);
 		}
 
 		private void OnStateChange(PlayerState oldState, PlayerState newState)
