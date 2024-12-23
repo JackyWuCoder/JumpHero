@@ -75,6 +75,13 @@ namespace JumpHero
 			if (_jumpXComponent > MAX_X_COMPONENT) _jumpXComponent = MAX_X_COMPONENT;
 			if (_jumpYComponent > MAX_Y_COMPONENT) _jumpYComponent = MAX_Y_COMPONENT;
 
+            bool isChargeComplete = (_jumpXComponent >= MAX_X_COMPONENT) && (_jumpYComponent >= MAX_Y_COMPONENT);
+
+            if (isChargeComplete && _chargeBar != null)
+            {
+                _chargeBar.Modulate = new Color(1, 0, 0);
+            }
+
             // Update the charge bar UI
             if (_chargeBar != null)
                 _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
