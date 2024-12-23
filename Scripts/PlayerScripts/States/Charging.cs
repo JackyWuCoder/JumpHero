@@ -5,18 +5,29 @@ namespace JumpHero
 {
     public partial class Charging : State
     {
-		private static readonly float STARTING_X_COMPONENT = 75f;
-		private static readonly float STARTING_Y_COMPONENT = 75f;
-		private static readonly float MAX_Y_COMPONENT = 600f;
-		private static readonly float MAX_X_COMPONENT = 450f;
-		private float _jumpXComponent = STARTING_X_COMPONENT;
-		private float _jumpYComponent = STARTING_Y_COMPONENT;
+        private static readonly float STARTING_X_COMPONENT = 75f;
+        private static readonly float STARTING_Y_COMPONENT = 75f;
+        private static readonly float MAX_Y_COMPONENT = 600f;
+        private static readonly float MAX_X_COMPONENT = 450f;
+        private float _jumpXComponent = STARTING_X_COMPONENT;
+        private float _jumpYComponent = STARTING_Y_COMPONENT;
 
-        public override void EnterState()
-        {
+        // Charge bar UI
+        private float _maxCharge = 100f;
+        private float _chargeSpeed = 50f;
+        private float _currentCharge = 0f;
+        private bool _isCharging = false;
+        private ProgressBar _chargeBar;
+
+		public override void EnterState()
+		{
             player.Velocity = Vector2.Zero;
 			_jumpXComponent = STARTING_X_COMPONENT;
 			_jumpYComponent = STARTING_Y_COMPONENT;
+
+            // Get a reference to the charge bar
+            _chargeBar = GetNode<ProgressBar>("/root/CanvasLayer/ProgressBar");
+            _chargeBar.Value = _currentCharge;
         }
 
         public override void ExitState()
@@ -60,6 +71,10 @@ namespace JumpHero
 			_jumpYComponent += chargeRate * MAX_Y_COMPONENT * delta;
 			if (_jumpXComponent > MAX_X_COMPONENT) _jumpXComponent = MAX_X_COMPONENT;
 			if (_jumpYComponent > MAX_Y_COMPONENT) _jumpYComponent = MAX_Y_COMPONENT;
+
+            // Update the charge bar UI
+            if (_chargeBar != null)
+                _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
 
 			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
 		}
