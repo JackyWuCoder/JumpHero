@@ -33,6 +33,14 @@ script = ExtResource("1_t2mjh")
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
 position = Vector2(620, 596)
 
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+visible = false
+offset_left = 92.0
+offset_top = -26.0
+offset_right = 96.0
+offset_bottom = 1.0
+scale = Vector2(1.93329, 1.93329)
+
 [node name="Level1Environment" type="Node2D" parent="."]
 
 [node name="Floor" type="StaticBody2D" parent="Level1Environment"]
