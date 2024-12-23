@@ -5,6 +5,9 @@ namespace JumpHero
 {
 	public partial class PlayerSpriteEffect : Sprite2D
 	{
+		// static constants
+		public static readonly Color DEFAULT_PLAYER_COLOR = new("e64c0e"); // Orange
+
 		// animation names
 		private static readonly string SQUASH_BOTTOM = "SquashBottom"; // played when soft landing (airborne -> grounded)
 		private static readonly string SQUASH_LEFT = "SquashLeft"; // played when hitting left wall
@@ -28,6 +31,8 @@ namespace JumpHero
 		public override void _Ready()
 		{
 			_animation = GetNode<AnimationPlayer>(ANIMATION_NODE_NAME);
+			
+			// Connect player signals
 			Player player = GetOwner<Player>();
 			player.Connect(Player.SignalName.OnChargeChange, Callable.From((float chargePercent) => OnChargeChange(chargePercent)));
 			player.Connect(Player.SignalName.OnStateChange, 
@@ -37,6 +42,15 @@ namespace JumpHero
 			);
 			player.Connect(Player.SignalName.OnWalk, Callable.From((bool isWalking) => OnWalkChange(isWalking)));
 			player.Connect(Player.SignalName.OnCollision, Callable.From((KinematicCollision2D collision) => OnCollision(collision)));
+
+			// Initialize player visuals
+			Modulate = DEFAULT_PLAYER_COLOR;
+		}
+
+		// 5:31am loud bang sound
+		public void SetColor(Color color)
+		{
+			Modulate = color;
 		}
 
         private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
@@ -58,18 +72,10 @@ namespace JumpHero
 			// skip squash animations if player is in freefall state
 			if (_animation.CurrentAnimation == FALLING) return;
 
-			float collisionAngle = collision.GetNormal().Angle();
-			// Uses high tolerance value to allow bounce visuals on more varied angles rather than perpendicular only
-			float equalityTolerance = Mathf.DegToRad(Player.SLOPE_ANGLE_THRESHOLD);
-
-			if (Mathf.IsEqualApprox(collisionAngle, 0, equalityTolerance))
-				_animation.Play(SQUASH_LEFT);
-
-			else if (Mathf.IsEqualApprox(collisionAngle, Mathf.Pi / 2, equalityTolerance)) 
-				_animation.Play(SQUASH_TOP);
-
-			else if (Mathf.IsEqualApprox(collisionAngle, Mathf.Pi, equalityTolerance))
-				_animation.Play(SQUASH_RIGHT);
+			// Check if collision is a wall and not a slope
+			if (CalculationHelper.IsValidCollider(collision, 0)) _animation.Play(SQUASH_LEFT);
+			else if (CalculationHelper.IsValidCollider(collision, Mathf.Pi / 2)) _animation.Play(SQUASH_TOP);
+			else if (CalculationHelper.IsValidCollider(collision, Mathf.Pi)) _animation.Play(SQUASH_RIGHT);
 		}
 
 		private void OnWalkChange(bool isWalking)
