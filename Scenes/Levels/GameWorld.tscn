@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcsah2kux6xyj"]
+[gd_scene load_steps=8 format=3 uid="uid://dcsah2kux6xyj"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/GlowFilter.gdshader" id="1_fn3rc"]
 [ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="2_1ym8w"]
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="2_whdpe"]
 [ext_resource type="PackedScene" uid="uid://biybh7wpqgjet" path="res://Scenes/Layouts/World1/W1L1.tscn" id="3_03kil"]
+[ext_resource type="Script" path="res://Scenes/Levels/CameraManager.cs" id="3_pppdb"]
 [ext_resource type="PackedScene" uid="uid://bdd7vfj4qgfp4" path="res://Scenes/Layouts/World1/W1L2.tscn" id="4_xkxhj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxju4"]
@@ -13,6 +14,7 @@ shader_parameter/vpass = 1.0
 shader_parameter/radius = 65
 
 [node name="GameWorld" type="Node2D"]
+script = ExtResource("2_whdpe")
 
 [node name="Filters" type="CanvasLayer" parent="."]
 
@@ -33,11 +35,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LevelManager" type="Node2D" parent="."]
-script = ExtResource("2_whdpe")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("3_pppdb")
 
 [node name="Player" parent="." instance=ExtResource("2_1ym8w")]
 position = Vector2(-17, 563)
