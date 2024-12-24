@@ -17,6 +17,15 @@ public partial class CameraManager : Camera2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+        if (_isTransitioningLevel)
+        {
+            Position = Position.Lerp(_targetPositionOfLevel, 0.05f);
+            if (Position.DistanceTo(_targetPositionOfLevel) < 1f)
+            {
+                Position = _targetPositionOfLevel;
+                _isTransitioningLevel = false;
+            }
+        }
 	}
 
     private void OnLevelTransitioned(Vector2 newCameraPosition)
