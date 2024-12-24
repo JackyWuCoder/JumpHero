@@ -7,7 +7,7 @@ public partial class LevelManager : Node
     public Player Player { get; private set; }
     public Camera2D Camera { get; private set; }
 
-    [Signal] public delegate void OnLevelTransitionRequestedEventHandler(Vector2 newCameraPosition);
+    [Signal] public delegate void OnLevelTransitionedEventHandler(Vector2 newCameraPosition);
 
     private float _cameraYOffset = -1296f; // Viewport Dimensions (1152 x 648) --> Camera Dimensions (2304 x 1296)
 
@@ -38,6 +38,6 @@ public partial class LevelManager : Node
 
     private void RequestLevelTransition(Vector2 newCameraPosition)
     {
-        EmitSignal(nameof(OnLevelTransitionRequestedEventHandler), newCameraPosition);
+        EmitSignal(nameof(OnLevelTransitionedEventHandler), newCameraPosition);
     }
 }
