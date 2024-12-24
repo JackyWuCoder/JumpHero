@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://5e25xtuem73q"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MainMenu.cs" id="1_061ml"]
+[ext_resource type="FontFile" uid="uid://mmxffjlhax25" path="res://Assets/Fonts/FFFFORWA.TTF" id="1_83qkt"]
+[ext_resource type="Shader" path="res://Assets/Shaders/MenuBackground.gdshader" id="1_tmcg2"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuEffects/GrowAndShrink.cs" id="2_7qt1m"]
+[ext_resource type="Theme" uid="uid://oqde4n3mp7dp" path="res://Assets/Materials/MenuTheme.tres" id="3_oxq4r"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuEffects/ButtonSnap.cs" id="4_qrhlq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5vl1"]
+shader = ExtResource("1_tmcg2")
+shader_parameter/zoom = 0.5
+shader_parameter/NUM_LAYERS = 6.0
+shader_parameter/brightness1 = 0.5
+shader_parameter/brightness2 = 1.0
+shader_parameter/brightness3 = 0.5
+shader_parameter/twinkle = 2.2
+shader_parameter/star_rays = 1.0
+shader_parameter/speed = 0.5
+shader_parameter/color1 = Vector3(0.498, 0.588, 1.128)
+shader_parameter/color2 = Vector3(-0.527, 0.388, 0.273)
+shader_parameter/color3 = Vector3(2.543, 0.463, 1.137)
+shader_parameter/color4 = Vector3(-1.402, 0.763, 1.463)
+shader_parameter/adjust_queue = Vector2(123.34, 456.821)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wc7ep"]
+font = ExtResource("1_83qkt")
+font_size = 64
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.1, 0.1, 0.1, 1)
+shadow_offset = Vector2(10, 10)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_061ml")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d5vl1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 75.0
+offset_right = 288.0
+offset_bottom = 163.0
+grow_horizontal = 2
+text = "Hurdle Hopper"
+label_settings = SubResource("LabelSettings_wc7ep")
+script = ExtResource("2_7qt1m")
+_scaleRate = 2.5
+_minScale = 0.9
+_maxScale = 1.05
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -100.0
+offset_right = 350.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 25.0
+offset_right = 90.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme = ExtResource("3_oxq4r")
+text = "Continue"
+script = ExtResource("4_qrhlq")
+_hoveredScale = 1.4
+_hoveredAngle = -10.0
+
+[node name="NewGame" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.0
+offset_top = 125.0
+offset_right = 106.0
+offset_bottom = 169.0
+grow_horizontal = 2
+theme = ExtResource("3_oxq4r")
+text = "New Game"
+script = ExtResource("4_qrhlq")
+_hoveredScale = 1.4
+_hoveredAngle = 10.0
+
+[node name="Options" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 225.0
+offset_right = 78.0
+offset_bottom = 269.0
+grow_horizontal = 2
+theme = ExtResource("3_oxq4r")
+text = "Options"
+script = ExtResource("4_qrhlq")
+_hoveredScale = 1.4
+_hoveredAngle = -10.0
+
+[node name="Quit" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 325.0
+offset_right = 42.0
+offset_bottom = 369.0
+grow_horizontal = 2
+theme = ExtResource("3_oxq4r")
+text = "Quit"
+script = ExtResource("4_qrhlq")
+_hoveredScale = 1.5
+_hoveredAngle = 15.0

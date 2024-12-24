@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cbea24p0cu6hv"]
+[gd_scene load_steps=3 format=3 uid="uid://cbea24p0cu6hv"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuManager.cs" id="1_5lweb"]
+[ext_resource type="PackedScene" uid="uid://5e25xtuem73q" path="res://Scenes/Menus/MainMenu.tscn" id="1_726xx"]
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -7,3 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5lweb")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_726xx")]
+layout_mode = 1
