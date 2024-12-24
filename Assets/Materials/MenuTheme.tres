@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://oqde4n3mp7dp"]
+
+[ext_resource type="FontFile" uid="uid://mmxffjlhax25" path="res://Assets/Fonts/FFFFORWA.TTF" id="1_k53g7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8p6lj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsx8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c3j83"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqaqs"]
+
+[resource]
+default_font = ExtResource("1_k53g7")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.521, 0.521, 0.521, 0.562)
+Button/colors/font_hover_color = Color(0.699652, 0.699654, 0.699654, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.556953, 0.556953, 0.556953, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxEmpty_8p6lj")
+Button/styles/focus = SubResource("StyleBoxEmpty_lsx8d")
+Button/styles/hover = SubResource("StyleBoxEmpty_c3j83")
+Button/styles/normal = SubResource("StyleBoxEmpty_nbfrt")
+Button/styles/pressed = SubResource("StyleBoxEmpty_fqaqs")
