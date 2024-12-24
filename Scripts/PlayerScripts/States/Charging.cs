@@ -5,12 +5,8 @@ namespace JumpHero
 {
     public partial class Charging : State
     {
-        private static readonly float STARTING_X_COMPONENT = 75f;
-        private static readonly float STARTING_Y_COMPONENT = 75f;
-        private static readonly float MAX_Y_COMPONENT = 600f;
-        private static readonly float MAX_X_COMPONENT = 450f;
-        private float _jumpXComponent = STARTING_X_COMPONENT;
-        private float _jumpYComponent = STARTING_Y_COMPONENT;
+        private float _jumpXComponent = Player.MIN_JUMP_WIDTH;
+        private float _jumpYComponent = Player.MIN_JUMP_HEIGHT;
 
         // Charge bar UI
         private float _maxCharge = 100f;
@@ -20,8 +16,8 @@ namespace JumpHero
 		public override void EnterState()
 		{
             player.Velocity = Vector2.Zero;
-			_jumpXComponent = STARTING_X_COMPONENT;
-			_jumpYComponent = STARTING_Y_COMPONENT;
+			_jumpXComponent = Player.MIN_JUMP_WIDTH;
+			_jumpYComponent = Player.MIN_JUMP_HEIGHT;
 
             ResetChargeBarValues();
             UpdateChargeBarPosition();
@@ -72,14 +68,14 @@ namespace JumpHero
 		private void ChargeJump(float delta)
 		{
 			const float chargeRate = 1f;
-			_jumpXComponent += 	chargeRate * MAX_X_COMPONENT * delta;
-			_jumpYComponent += chargeRate * MAX_Y_COMPONENT * delta;
-			if (_jumpXComponent > MAX_X_COMPONENT) _jumpXComponent = MAX_X_COMPONENT;
-			if (_jumpYComponent > MAX_Y_COMPONENT) _jumpYComponent = MAX_Y_COMPONENT;
+			_jumpXComponent += 	chargeRate * Player.MAX_JUMP_WIDTH * delta;
+			_jumpYComponent += chargeRate * Player.MAX_JUMP_HEIGHT * delta;
+			if (_jumpXComponent > Player.MAX_JUMP_WIDTH) _jumpXComponent = Player.MAX_JUMP_WIDTH;
+			if (_jumpYComponent > Player.MAX_JUMP_HEIGHT) _jumpYComponent = Player.MAX_JUMP_HEIGHT;
 
             UpdateChargeBarUI();
 
-			player.EmitChargePercentage(_jumpXComponent / MAX_X_COMPONENT);
+			player.EmitChargePercentage(_jumpXComponent / Player.MAX_JUMP_WIDTH);
 		}
 
         private void ResetChargeBarValues()
@@ -98,7 +94,7 @@ namespace JumpHero
         {
             if (_chargeBar != null)
             {
-                _chargeBar.Value = _jumpXComponent / MAX_X_COMPONENT * _maxCharge;
+                _chargeBar.Value = _jumpXComponent / Player.MAX_JUMP_WIDTH * _maxCharge;
                 _chargeBar.Modulate = GetInterpolatedColor((float)_chargeBar.Value);
             }
         }

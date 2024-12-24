@@ -21,6 +21,10 @@ namespace JumpHero
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
 		public static readonly float FREEFALL_THRESHOLD = 800f;
 		public static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
+		public static readonly float MAX_JUMP_HEIGHT = 750f;
+		public static readonly float MIN_JUMP_HEIGHT = 75f;
+		public static readonly float MAX_JUMP_WIDTH = 500f;
+		public static readonly float MIN_JUMP_WIDTH = 50f;
 
 		// data members
 		public float Gravity { get; private set; } = DEFAULT_GRAVITY;
