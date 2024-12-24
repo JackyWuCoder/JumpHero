@@ -56,3 +56,7 @@ Pause={
 
 2d_physics/layer_1="Platform"
 2d_physics/layer_2="Player"
+
+[rendering]
+
+viewport/hdr_2d=true
