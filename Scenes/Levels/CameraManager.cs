@@ -4,6 +4,8 @@ using System;
 
 public partial class CameraManager : Camera2D
 {
+    [Export] private float _positionInterpolationSpeed = 0.05f;
+
     private bool _isTransitioningLevel = false;
     private Vector2 _targetPositionOfLevel;
 
@@ -31,7 +33,7 @@ public partial class CameraManager : Camera2D
     {
         if (_isTransitioningLevel)
         {
-            Position = Position.Lerp(_targetPositionOfLevel, 0.05f);
+            Position = Position.Lerp(_targetPositionOfLevel, _positionInterpolationSpeed);
             if (Position.DistanceTo(_targetPositionOfLevel) < 1f)
             {
                 Position = _targetPositionOfLevel;
