@@ -4,8 +4,8 @@ using System;
 
 public partial class CameraManager : Camera2D
 {
-    private bool _isTransitioning = false;
-    private Vector2 _targetPosition;
+    private bool _isTransitioningLevel = false;
+    private Vector2 _targetPositionOfLevel;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -21,7 +21,9 @@ public partial class CameraManager : Camera2D
 
     private void OnLevelTransitioned(Vector2 newCameraPosition)
     {
-
+        if (_isTransitioningLevel) return;
+        _targetPositionOfLevel = newCameraPosition;
+        _isTransitioningLevel = true;
     }
 
 }
