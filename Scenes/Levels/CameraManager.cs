@@ -17,6 +17,18 @@ public partial class CameraManager : Camera2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+        InterpolateCameraPositionToNewLevel();
+	}
+
+    private void OnLevelTransitioned(Vector2 newCameraPosition)
+    {
+        if (_isTransitioningLevel) return;
+        _targetPositionOfLevel = newCameraPosition;
+        _isTransitioningLevel = true;
+    }
+
+    private void InterpolateCameraPositionToNewLevel()
+    {
         if (_isTransitioningLevel)
         {
             Position = Position.Lerp(_targetPositionOfLevel, 0.05f);
@@ -26,13 +38,6 @@ public partial class CameraManager : Camera2D
                 _isTransitioningLevel = false;
             }
         }
-	}
-
-    private void OnLevelTransitioned(Vector2 newCameraPosition)
-    {
-        if (_isTransitioningLevel) return;
-        _targetPositionOfLevel = newCameraPosition;
-        _isTransitioningLevel = true;
     }
 
 }
