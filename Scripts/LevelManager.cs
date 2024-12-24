@@ -38,6 +38,6 @@ public partial class LevelManager : Node
 
     private void RequestLevelTransition(Vector2 newCameraPosition)
     {
-        EmitSignal(nameof(OnLevelTransitionedEventHandler), newCameraPosition);
+        EmitSignal(SignalName.OnLevelTransitioned, newCameraPosition);
     }
 }
