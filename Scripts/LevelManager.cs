@@ -4,11 +4,12 @@ using System;
 
 public partial class LevelManager : Node
 {
-    public Camera2D Camera { get; private set; }
     public Player Player { get; private set; }
+    public Camera2D Camera { get; private set; }
+
+    [Signal] public delegate void OnLevelTransitionRequestedEventHandler(Vector2 newCameraPosition);
 
     private float _cameraYOffset = -1296f; // Viewport Dimensions (1152 x 648) --> Camera Dimensions (2304 x 1296)
-    private bool _isTransitioning = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,25 +21,23 @@ public partial class LevelManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        if (((Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2)) && !_isTransitioning) ||
-            (Player.Position.Y > (Camera.Position.Y - _cameraYOffset / 2)) && !_isTransitioning) 
-        {
-            StartLevelTransition();
-        }
-        if (_isTransitioning)
-        {
-            if (Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2)) {
-                Camera.Position = new Vector2(Camera.Position.X, Camera.Position.Y + _cameraYOffset);
-            }
-            else {
-                Camera.Position = new Vector2(Camera.Position.X, Camera.Position.Y - _cameraYOffset);
-            }
-            _isTransitioning = false;
-        }
+        PlayerLevelTransition();
 	}
 
-    public void StartLevelTransition()
+    private void PlayerLevelTransition()
     {
-        _isTransitioning = true;
+        if (Player.Position.Y < (Camera.Position.Y + _cameraYOffset / 2))
+        {
+            RequestLevelTransition(Camera.Position + new Vector2(0, _cameraYOffset));
+        }
+        else if (Player.Position.Y > (Camera.Position.Y - _cameraYOffset / 2))
+        {
+            RequestLevelTransition(Camera.Position - new Vector2(0, _cameraYOffset));
+        }
+    }
+
+    private void RequestLevelTransition(Vector2 newCameraPosition)
+    {
+        EmitSignal(nameof(OnLevelTransitionRequestedEventHandler), newCameraPosition);
     }
 }
