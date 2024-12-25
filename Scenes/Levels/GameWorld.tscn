@@ -42,6 +42,10 @@ script = ExtResource("3_pppdb")
 [node name="Player" parent="." instance=ExtResource("2_1ym8w")]
 position = Vector2(-17, 563)
 
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_right = 4.0
+offset_bottom = 27.0
+
 [node name="Layout" type="Node2D" parent="."]
 
 [node name="World1" type="Node2D" parent="Layout"]
@@ -66,3 +70,5 @@ position = Vector2(-1152, -648)
 
 [node name="World6" type="Node2D" parent="Layout"]
 position = Vector2(-1152, -648)
+
+[editable path="Player"]

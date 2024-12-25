@@ -221,3 +221,5 @@ shape = SubResource("RectangleShape2D_warui")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Slant4"]
 texture = SubResource("PlaceholderTexture2D_atewy")
+
+[editable path="Player"]

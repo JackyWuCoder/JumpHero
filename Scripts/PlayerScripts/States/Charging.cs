@@ -80,7 +80,7 @@ namespace JumpHero
 
         private void ResetChargeBarValues()
         {
-            _chargeBar = GetNode<ProgressBar>("/root/TestWorld/Player/ProgressBar");
+            _chargeBar = GetNode<ProgressBar>("../../ProgressBar");
             if (_chargeBar == null)
                 GD.PrintErr("Charge bar not found!");
             else
