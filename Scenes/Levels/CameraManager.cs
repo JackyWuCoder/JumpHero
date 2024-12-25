@@ -4,42 +4,30 @@ using System;
 
 public partial class CameraManager : Camera2D
 {
-    [Export] private float _positionInterpolationSpeed = 0.05f;
-
+    [Export] private float _transitionSpeed = 0.15f;
+    
+    // Viewport Dimensions (1152 x 648) --> Camera Dimensions (2304 x 1296)
+    private float _cameraYOffset = 1296f; // TODO: Change so it is not hard coded
     private bool _isTransitioningLevel = false;
     private Vector2 _targetPositionOfLevel;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        var levelManager = GetParent() as LevelManager;
-        levelManager.Connect(LevelManager.SignalName.OnLevelTransitioned, Callable.From((Vector2 newCameraPosition) => OnLevelTransitioned(newCameraPosition)) );
+        GetOwner<LevelManager>().Connect(LevelManager.SignalName.LevelTransition,
+            Callable.From((Player player) => TransitionCamera(player))
+        );
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-        InterpolateCameraPositionToNewLevel();
-	}
-
-    private void OnLevelTransitioned(Vector2 newCameraPosition)
+    private void TransitionCamera(Player player)
     {
         if (_isTransitioningLevel) return;
-        _targetPositionOfLevel = newCameraPosition;
-        _isTransitioningLevel = true;
-    }
+        // Calculates new camera position via ternary operator
+        Vector2 newCameraPosition = player.Position.Y < (Position.Y + _cameraYOffset / 2) ? 
+            Position + Vector2.Up * _cameraYOffset : Position + Vector2.Down * _cameraYOffset;
 
-    private void InterpolateCameraPositionToNewLevel()
-    {
-        if (_isTransitioningLevel)
-        {
-            Position = Position.Lerp(_targetPositionOfLevel, _positionInterpolationSpeed);
-            if (Position.DistanceTo(_targetPositionOfLevel) < 1f)
-            {
-                Position = _targetPositionOfLevel;
-                _isTransitioningLevel = false;
-            }
-        }
+        Tween transition = CreateTween().SetEase(Tween.EaseType.Out);
+        transition.TweenProperty(this, nameof(Position).ToLower(), newCameraPosition, _transitionSpeed);
+        transition.TweenCallback(Callable.From(() => _isTransitioningLevel = false));
+        transition.Play();
     }
-
 }
