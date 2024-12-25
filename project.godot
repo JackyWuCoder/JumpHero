@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="JumpHero"
-run/main_scene="res://Scenes/Levels/TestWorld.tscn"
+run/main_scene="res://Scenes/Menus/AllMenus.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
