@@ -7,6 +7,7 @@ namespace JumpHero
 	public partial class Player : CharacterBody2D
 	{
 		// signals
+		[Signal] public delegate void OnScreenExitEventHandler();
 		[Signal] public delegate void OnStateChangeEventHandler();
 		[Signal] public delegate void OnDirectionChangeEventHandler();
 		[Signal] public delegate void OnChargeChangeEventHandler();
@@ -16,6 +17,7 @@ namespace JumpHero
 
 		// player component node names
 		private static readonly string STATE_MANAGER_NODE_NAME = "States";
+		private static readonly string SCREEN_NOTIFIER_NODE_NAME = "ScreenNotifier";
 
 		// static constants
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
@@ -39,6 +41,10 @@ namespace JumpHero
 		{
 			_stateManager = GetNode<PlayerStateManager>(STATE_MANAGER_NODE_NAME);
 			FloorMaxAngle = SLOPE_ANGLE_THRESHOLD;
+			GetNode<VisibleOnScreenNotifier2D>(SCREEN_NOTIFIER_NODE_NAME)
+				.Connect(VisibleOnScreenNotifier2D.SignalName.ScreenExited,
+					Callable.From(() => EmitSignal(SignalName.OnScreenExit))
+			);
 		}
 
 		public void NotifyJump()
