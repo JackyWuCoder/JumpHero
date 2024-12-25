@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://oqde4n3mp7dp"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://oqde4n3mp7dp"]
 
 [ext_resource type="FontFile" uid="uid://mmxffjlhax25" path="res://Assets/Fonts/FFFFORWA.TTF" id="1_k53g7"]
 
@@ -11,6 +11,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfrt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqaqs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ons2"]
+bg_color = Color(0, 0, 0, 0.908)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmvn1"]
+bg_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font = ExtResource("1_k53g7")
@@ -26,3 +32,9 @@ Button/styles/focus = SubResource("StyleBoxEmpty_lsx8d")
 Button/styles/hover = SubResource("StyleBoxEmpty_c3j83")
 Button/styles/normal = SubResource("StyleBoxEmpty_nbfrt")
 Button/styles/pressed = SubResource("StyleBoxEmpty_fqaqs")
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 10
+ProgressBar/font_sizes/font_size = 26
+ProgressBar/styles/background = SubResource("StyleBoxFlat_1ons2")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hmvn1")
