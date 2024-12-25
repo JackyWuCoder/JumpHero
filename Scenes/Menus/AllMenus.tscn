@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbea24p0cu6hv"]
+[gd_scene load_steps=5 format=3 uid="uid://cbea24p0cu6hv"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/MenuManager.cs" id="1_5lweb"]
 [ext_resource type="PackedScene" uid="uid://5e25xtuem73q" path="res://Scenes/Menus/MainMenu.tscn" id="1_726xx"]
+[ext_resource type="PackedScene" uid="uid://ohxj8xmw6kby" path="res://Scenes/Menus/LoadMenu.tscn" id="3_k6ds7"]
+[ext_resource type="PackedScene" uid="uid://ba7ig4o0chtxq" path="res://Scenes/Menus/InGameMenu.tscn" id="4_4oxhu"]
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -13,4 +15,10 @@ grow_vertical = 2
 script = ExtResource("1_5lweb")
 
 [node name="MainMenu" parent="." instance=ExtResource("1_726xx")]
+layout_mode = 1
+
+[node name="LoadMenu" parent="." instance=ExtResource("3_k6ds7")]
+layout_mode = 1
+
+[node name="InGameMenu" parent="." instance=ExtResource("4_4oxhu")]
 layout_mode = 1
