@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://lwo14eijpqe4"]
+[gd_scene load_steps=12 format=3 uid="uid://lwo14eijpqe4"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/GlowFilter.gdshader" id="1_2jeao"]
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_t2mjh"]
 [ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="1_y5rc8"]
+[ext_resource type="Script" path="res://Scenes/Levels/CameraManager.cs" id="3_notlf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eh2kd"]
 shader = ExtResource("1_2jeao")
@@ -29,6 +30,7 @@ size = Vector2(500, 25)
 size = Vector2(500, 25)
 
 [node name="TestWorld" type="Node2D"]
+script = ExtResource("1_t2mjh")
 
 [node name="Filters" type="CanvasLayer" parent="."]
 
@@ -66,9 +68,7 @@ color = Color(6.486, 9.19, 10.27, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 zoom = Vector2(0.5, 0.5)
-
-[node name="LevelManager" type="Node2D" parent="."]
-script = ExtResource("1_t2mjh")
+script = ExtResource("3_notlf")
 
 [node name="Player" parent="." instance=ExtResource("1_y5rc8")]
 position = Vector2(620, 596)
