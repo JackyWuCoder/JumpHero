@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcsah2kux6xyj"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/GlowFilter.gdshader" id="1_fn3rc"]
+[ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="2_1ym8w"]
+[ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="2_whdpe"]
+[ext_resource type="PackedScene" uid="uid://biybh7wpqgjet" path="res://Scenes/Layouts/World1/W1L1.tscn" id="3_03kil"]
+[ext_resource type="Script" path="res://Scenes/Levels/CameraManager.cs" id="3_pppdb"]
+[ext_resource type="PackedScene" uid="uid://bdd7vfj4qgfp4" path="res://Scenes/Layouts/World1/W1L2.tscn" id="4_xkxhj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxju4"]
+shader = ExtResource("1_fn3rc")
+shader_parameter/hpass = 1.0
+shader_parameter/vpass = 1.0
+shader_parameter/radius = 65
+
+[node name="GameWorld" type="Node2D"]
+script = ExtResource("2_whdpe")
+
+[node name="Filters" type="CanvasLayer" parent="."]
+
+[node name="GlowFilter" type="Control" parent="Filters"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Filters/GlowFilter"]
+material = SubResource("ShaderMaterial_nxju4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("3_pppdb")
+
+[node name="Player" parent="." instance=ExtResource("2_1ym8w")]
+position = Vector2(-17, 563)
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="Layout" type="Node2D" parent="."]
+
+[node name="World1" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[node name="W1L1" parent="Layout/World1" instance=ExtResource("3_03kil")]
+
+[node name="W1L2" parent="Layout/World1" instance=ExtResource("4_xkxhj")]
+position = Vector2(0, -1296)
+
+[node name="World2" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[node name="World3" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[node name="World4" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[node name="World5" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[node name="World6" type="Node2D" parent="Layout"]
+position = Vector2(-1152, -648)
+
+[editable path="Player"]

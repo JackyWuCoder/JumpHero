@@ -1,0 +1,225 @@
+[gd_scene load_steps=12 format=3 uid="uid://lwo14eijpqe4"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/GlowFilter.gdshader" id="1_2jeao"]
+[ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_t2mjh"]
+[ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="1_y5rc8"]
+[ext_resource type="Script" path="res://Scenes/Levels/CameraManager.cs" id="3_notlf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eh2kd"]
+shader = ExtResource("1_2jeao")
+shader_parameter/hpass = 1.0
+shader_parameter/vpass = 1.0
+shader_parameter/radius = 65
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a7agg"]
+size = Vector2(1500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e404b"]
+size = Vector2(1500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e07p"]
+size = Vector2(500, 900)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qig20"]
+size = Vector2(500, 900)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_warui"]
+size = Vector2(500, 25)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atewy"]
+size = Vector2(500, 25)
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource("1_t2mjh")
+
+[node name="Filters" type="CanvasLayer" parent="."]
+
+[node name="GlowFilter" type="Control" parent="Filters"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Filters/GlowFilter"]
+material = SubResource("ShaderMaterial_eh2kd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestLight" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 325.0
+offset_right = 459.0
+offset_bottom = 344.0
+color = Color(6.486, 9.19, 10.27, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("3_notlf")
+
+[node name="Player" parent="." instance=ExtResource("1_y5rc8")]
+position = Vector2(620, 596)
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+visible = false
+offset_left = 92.0
+offset_top = -26.0
+offset_right = 96.0
+offset_bottom = 1.0
+scale = Vector2(1.93329, 1.93329)
+
+[node name="Level1Environment" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(751, 881)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Floor"]
+texture = SubResource("PlaceholderTexture2D_a7agg")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Floor"]
+shape = SubResource("RectangleShape2D_e404b")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(-160, 344)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Wall"]
+shape = SubResource("RectangleShape2D_6e07p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Wall"]
+texture = SubResource("PlaceholderTexture2D_qig20")
+
+[node name="Platform" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1020, 371)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform3" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1260, 271)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform3"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform3"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform4" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1404, 187)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform4"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform4"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform5" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1576, 91)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform5"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform5"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform6" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1704, -17)
+scale = Vector2(0.543796, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform6"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform6"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Platform7" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1180, -176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Platform7"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Platform7"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(320, 114)
+rotation = 0.523599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Slant"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Slant"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant2" type="StaticBody2D" parent="Level1Environment"]
+position = Vector2(1600, 116)
+rotation = -0.872665
+scale = Vector2(1.5586, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1Environment/Slant2"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level1Environment/Slant2"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Level2Environment" type="Node2D" parent="."]
+
+[node name="Wall2" type="StaticBody2D" parent="Level2Environment"]
+position = Vector2(-160, -776)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2Environment/Wall2"]
+shape = SubResource("RectangleShape2D_6e07p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Wall2"]
+texture = SubResource("PlaceholderTexture2D_qig20")
+
+[node name="Platform2" type="StaticBody2D" parent="Level2Environment"]
+position = Vector2(544, -352)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2Environment/Platform2"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Platform2"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant3" type="StaticBody2D" parent="Level2Environment"]
+position = Vector2(320, -1006)
+rotation = 0.523599
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2Environment/Slant3"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Slant3"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[node name="Slant4" type="StaticBody2D" parent="Level2Environment"]
+position = Vector2(1600, -1004)
+rotation = -0.872665
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2Environment/Slant4"]
+shape = SubResource("RectangleShape2D_warui")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level2Environment/Slant4"]
+texture = SubResource("PlaceholderTexture2D_atewy")
+
+[editable path="Player"]

@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://biybh7wpqgjet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i010i"]
+size = Vector2(100, 648)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gpt0b"]
+size = Vector2(1152, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5apx"]
+size = Vector2(1152, 30)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qxyfn"]
+size = Vector2(400, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r11vh"]
+size = Vector2(400, 125)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sn4cp"]
+size = Vector2(150, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qh5t"]
+size = Vector2(150, 10)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8e6he"]
+size = Vector2(200, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxpoa"]
+size = Vector2(200, 75)
+
+[node name="W1L1" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="WorldBorder" type="Node2D" parent="."]
+position = Vector2(0, 324)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WorldBorder"]
+position = Vector2(-50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/StaticBody2D"]
+shape = SubResource("RectangleShape2D_i010i")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="WorldBorder"]
+position = Vector2(1202, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_i010i")
+
+[node name="Layout" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Layout"]
+position = Vector2(576, 633)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_gpt0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D"]
+shape = SubResource("RectangleShape2D_c5apx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Layout"]
+position = Vector2(201, 558)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D2"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_qxyfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_r11vh")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Layout"]
+position = Vector2(950, 558)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D3"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_qxyfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_r11vh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Layout"]
+position = Vector2(1077, 393.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D4"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_sn4cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_2qh5t")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Layout"]
+position = Vector2(886.5, 296)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D5"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_sn4cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_2qh5t")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Layout"]
+position = Vector2(75.5, 393.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D6"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_sn4cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D6"]
+shape = SubResource("RectangleShape2D_2qh5t")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Layout"]
+position = Vector2(288, 296)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D7"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_sn4cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D7"]
+shape = SubResource("RectangleShape2D_2qh5t")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Layout"]
+position = Vector2(590.5, 220)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D8"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_8e6he")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_mxpoa")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Layout"]
+position = Vector2(905.5, 105.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D9"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_8e6he")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_mxpoa")
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Layout"]
+position = Vector2(277, 105.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/StaticBody2D10"]
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("PlaceholderTexture2D_8e6he")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/StaticBody2D10"]
+shape = SubResource("RectangleShape2D_mxpoa")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://ohxj8xmw6kby"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/LoadMenu.cs" id="1_4rron"]
+[ext_resource type="Shader" path="res://Assets/Shaders/LoadMenuBackground.gdshader" id="1_h3gde"]
+[ext_resource type="FontFile" uid="uid://mmxffjlhax25" path="res://Assets/Fonts/FFFFORWA.TTF" id="2_a5vni"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuEffects/Bobbing.cs" id="3_ci2ck"]
+[ext_resource type="Theme" uid="uid://oqde4n3mp7dp" path="res://Assets/Materials/MenuTheme.tres" id="5_03l45"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyt1k"]
+shader = ExtResource("1_h3gde")
+shader_parameter/EPS = 0.01
+shader_parameter/mouse = Vector2(-0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1jly3"]
+font = ExtResource("2_a5vni")
+font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.1, 0.1, 0.1, 1)
+shadow_offset = Vector2(10, 10)
+
+[node name="LoadMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4rron")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vyt1k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingMessage" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -49.0
+offset_right = 311.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading Level"
+label_settings = SubResource("LabelSettings_1jly3")
+script = ExtResource("3_ci2ck")
+
+[node name="LoadBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_03l45")
+max_value = 1.0
+value = 0.5
+show_percentage = false
