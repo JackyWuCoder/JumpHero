@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dyqm2jhmho4gp"]
+[gd_scene load_steps=30 format=3 uid="uid://dyqm2jhmho4gp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
 [ext_resource type="Texture2D" uid="uid://c1g8q583qhqsf" path="res://Assets/Sprites/Player/BaseBox.png" id="2_6xh3c"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cgd3l1hjxici0" path="res://Assets/Sounds/PlayerSounds/Trip.mp3" id="7_opyn6"]
 [ext_resource type="AudioStream" uid="uid://b5u7u2b64cj3" path="res://Assets/Sounds/PlayerSounds/WindUp.mp3" id="8_tytma"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerParticleEffects.cs" id="10_avisf"]
+[ext_resource type="PackedScene" uid="uid://bt6d8qkxcyhc" path="res://Scenes/Menus/PauseMenu.tscn" id="16_xdfjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um7ai"]
 size = Vector2(50, 50)
@@ -362,3 +363,8 @@ script = ExtResource("5_7ey8u")
 
 [node name="Charging" type="Node" parent="States"]
 script = ExtResource("6_551xx")
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="Menus" instance=ExtResource("16_xdfjc")]
+visible = false
