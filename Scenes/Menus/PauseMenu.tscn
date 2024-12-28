@@ -1,9 +1,195 @@
-[gd_scene format=3 uid="uid://bt6d8qkxcyhc"]
+[gd_scene load_steps=9 format=3 uid="uid://bt6d8qkxcyhc"]
+
+[ext_resource type="Script" path="res://Scripts/MenuScripts/PauseMenu.cs" id="1_ory8k"]
+[ext_resource type="Theme" uid="uid://oqde4n3mp7dp" path="res://Assets/Materials/MenuTheme.tres" id="2_3plcy"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuEffects/ButtonSnap.cs" id="3_r33bo"]
+[ext_resource type="FontFile" uid="uid://mmxffjlhax25" path="res://Assets/Fonts/FFFFORWA.TTF" id="4_dcsrj"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/MenuEffects/GrowAndShrink.cs" id="5_mmfw2"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Blur.gdshader" id="6_1ls2h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtbjj"]
+shader = ExtResource("6_1ls2h")
+shader_parameter/amount = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_100pm"]
+font = ExtResource("4_dcsrj")
+font_size = 40
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0.1, 0.1, 0.1, 1)
+shadow_offset = Vector2(10, 10)
 
 [node name="PauseMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ory8k")
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jtbjj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+
+[node name="Shadow" type="ColorRect" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -210.0
+offset_right = 250.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 200)
+color = Color(0.0962049, 0.0962047, 0.0962046, 1)
+
+[node name="Outline" type="ColorRect" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -225.0
+offset_right = 235.0
+offset_bottom = 295.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 200)
+color = Color(0.873298, 0.873298, 0.873298, 1)
+
+[node name="Background" type="ColorRect" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -215.0
+offset_right = 225.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 200)
+color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -215.0
+offset_right = 225.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 50.0
+offset_right = 135.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme = ExtResource("2_3plcy")
+theme_override_font_sizes/font_size = 48
+text = "Continue"
+script = ExtResource("3_r33bo")
+_hoveredScale = 1.4
+_hoveredAngle = -10.0
+
+[node name="Save" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 160.0
+offset_right = 90.0
+offset_bottom = 226.0
+grow_horizontal = 2
+theme = ExtResource("2_3plcy")
+theme_override_font_sizes/font_size = 48
+text = "Save"
+script = ExtResource("3_r33bo")
+_hoveredAngle = 10.0
+
+[node name="Options" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 270.0
+offset_right = 117.0
+offset_bottom = 336.0
+grow_horizontal = 2
+theme = ExtResource("2_3plcy")
+theme_override_font_sizes/font_size = 48
+text = "Options"
+script = ExtResource("3_r33bo")
+_hoveredScale = 1.5
+_hoveredAngle = -5.0
+
+[node name="Quit" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = 380.0
+offset_right = 90.0
+offset_bottom = 446.0
+grow_horizontal = 2
+theme = ExtResource("2_3plcy")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+script = ExtResource("3_r33bo")
+_hoveredScale = 1.2
+_hoveredAngle = 13.0
+
+[node name="Pause" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.5
+offset_top = 25.0
+offset_right = 102.5
+offset_bottom = 80.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_100pm")
+script = ExtResource("5_mmfw2")
+_scaleRate = 2.5
+_minScale = 0.9
+_maxScale = 1.05
