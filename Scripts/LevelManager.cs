@@ -23,10 +23,17 @@ public partial class LevelManager : Node
                 EmitSignal(SignalName.LevelTransition, _player);
             }
         ));
+        MoveToLastWorld();
 	}
 
     private void CheckNewWorld()
     {
         // TODO: Implement when more levels are finished, checks if 5 levels are passed
+    }
+
+    private void MoveToLastWorld()
+    {
+        // TODO: Teleport player to whichever world checkpoint is reached GlobalVariables
+        GD.Print($"Starting at world: {GlobalVariables.Instance.World}");
     }
 }
