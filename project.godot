@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/Menus/AllMenus.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneLoadManager="*res://Scripts/SceneLoadManager.cs"
+GlobalVariables="*res://Scripts/GlobalVariables.cs"
+
 [dotnet]
 
 project/assembly_name="JumpHero"
