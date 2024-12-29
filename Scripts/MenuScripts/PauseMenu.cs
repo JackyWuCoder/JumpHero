@@ -61,9 +61,11 @@ public partial class PauseMenu : Control
 
 	private void OnQuit()
 	{
-		// TODO: Go back to main menu
+		GetTree().Paused = false;
+		SceneLoadManager.Instance.TransitionScene(SceneLoadManager.Scene.MENUS, true);
 	}
 
+	// Pause screen animations section
 	private void PauseWithAnimation()
 	{
 		_isAnimating = true;
