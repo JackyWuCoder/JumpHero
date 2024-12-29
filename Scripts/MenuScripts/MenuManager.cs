@@ -11,14 +11,9 @@ public partial class MenuManager : Control
 	private static readonly string LOADING_MENU = "LoadMenu"; // Only used by menu manager when loading resources (i.e. the level)
 	private static readonly string GAME_SCENE_PATH = "Scenes/Levels/GameWorld.tscn";
 
-	// Data members
-	private LoadMenu _loadScreen;
-	
     public override void _Ready()
     {
         SwitchMenu(MAIN_MENU); // On first boot-up, go to main menu
-		_loadScreen = GetNode<LoadMenu>(LOADING_MENU);
-		_loadScreen.Connect(LoadMenu.SignalName.OnFinishedLoading, Callable.From((string path) => TransitionScene(path)));
     }
     /*
 		Menus are expected to use one of the static variables, each menu also has to match name with static constants.
@@ -34,19 +29,11 @@ public partial class MenuManager : Control
 		}
 	}
 
-	public void LoadGameWorld(int world = 1)
+	public void LoadGameWorld(bool usingSave = false)
 	{
 		// TODO: Move the player to whatever the world passed in was, for now let it do nothing
-		ResourceLoader.LoadThreadedRequest(GAME_SCENE_PATH);
-		_loadScreen.StartLoadScreen(GAME_SCENE_PATH);
-		SwitchMenu(LOADING_MENU);
-	}
-
-	public void TransitionScene(string resourcePath)
-	{
-		// TODO: Find a better way of managing different scenes that's not done in the menus
-		PackedScene scene = (PackedScene) ResourceLoader.LoadThreadedGet(resourcePath);
-		GetTree().ChangeSceneToPacked(scene);
+		if (!usingSave) GlobalVariables.Instance.ClearSaveFile();
+		SceneLoadManager.Instance.TransitionScene(SceneLoadManager.Scene.INGAME);
 	}
 
 	private void EnableMenu(Control menu, bool enable)

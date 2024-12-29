@@ -21,15 +21,14 @@ public partial class MainMenu : Control
 	{
 		// TODO: Implement after file saving system is created, need to reload from player's last checkpoint
 		GD.Print("YEAH GOODLUCK WITH THAT BUDDY");
-		// TODO: Add some sort of file saving such that it saves what world the player was on, then pass to load game world function
-		manager.LoadGameWorld(1);
+		manager.LoadGameWorld();
 	}
 
 	private void OnNewGame()
 	{
 		// TODO: Transition to new scene that is the game level
 		GD.Print("NEW GAME WAS PRESSED WOW");
-		manager.LoadGameWorld(1);
+		manager.LoadGameWorld(usingSave: false);
 	}
 
 	private void OnOptions()
