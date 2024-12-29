@@ -25,7 +25,7 @@ public partial class SceneLoadManager : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		_currentScene = GetTree().Root.GetChild<Node>(-1); // Current scene always at last of root
+		_currentScene = GetTree().Root.GetChild<Node>(-1); // Current scene always at last of root before add child
 
 		// Get load menu and instantiate it for displaying usage
 		PackedScene loadScene = ResourceLoader.Load<PackedScene>(LOAD_MENU_PATH);
@@ -36,7 +36,7 @@ public partial class SceneLoadManager : Node
 	}
 
 	// This function expects one of the static variables outlined above
-	public void TransitionScene(Scene scene)
+	public void TransitionScene(Scene scene, bool skipLoadScreen = false)
 	{
 		// Get scene path from scene enum
 		string scenePath = "";
@@ -53,7 +53,18 @@ public partial class SceneLoadManager : Node
 				break;
 		}
 		// Need to defer because code might still be running, need to wait for next frame
-		CallDeferred(MethodName.StartTransition, scenePath);
+		if (skipLoadScreen) CallDeferred(MethodName.InstantTransition, scenePath);
+		else CallDeferred(MethodName.StartTransition, scenePath);
+	}
+	
+	// Use case for scenes that load almost instantly
+	private void InstantTransition(string scenePath)
+	{
+		_currentScene.Free();
+		PackedScene nextScene = ResourceLoader.Load<PackedScene>(scenePath);
+		_currentScene = nextScene.Instantiate();
+		GetTree().Root.AddChild(_currentScene);
+		GetTree().CurrentScene = _currentScene;
 	}
 
 	private void StartTransition(string scenePath)
