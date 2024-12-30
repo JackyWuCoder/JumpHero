@@ -30,7 +30,7 @@ namespace JumpHero
 
 		// data members
 		public float Gravity { get; private set; } = DEFAULT_GRAVITY;
-		public float MoveSpeed { get; private set; } = 250f;
+		public float MoveSpeed { get; private set; } = 175f;
 		public bool IsFacingRight { get; private set; } = false;
 		public bool IsWalking { get; private set; } = false;
 		public float Elasticity { get; private set; } = 0.8f;
