@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 SceneLoadManager="*res://Scripts/SceneLoadManager.cs"
 GlobalVariables="*res://Scripts/GlobalVariables.cs"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [dotnet]
 
 project/assembly_name="JumpHero"
