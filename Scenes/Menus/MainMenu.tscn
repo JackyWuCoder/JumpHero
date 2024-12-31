@@ -94,6 +94,7 @@ grow_horizontal = 2
 theme = ExtResource("3_oxq4r")
 text = "Continue"
 script = ExtResource("4_qrhlq")
+_activeOnReady = false
 _hoveredScale = 1.4
 _hoveredAngle = -10.0
 
@@ -110,6 +111,7 @@ grow_horizontal = 2
 theme = ExtResource("3_oxq4r")
 text = "New Game"
 script = ExtResource("4_qrhlq")
+_activeOnReady = false
 _hoveredScale = 1.4
 _hoveredAngle = 10.0
 
@@ -126,6 +128,7 @@ grow_horizontal = 2
 theme = ExtResource("3_oxq4r")
 text = "Options"
 script = ExtResource("4_qrhlq")
+_activeOnReady = false
 _hoveredScale = 1.4
 _hoveredAngle = -10.0
 
@@ -142,5 +145,6 @@ grow_horizontal = 2
 theme = ExtResource("3_oxq4r")
 text = "Quit"
 script = ExtResource("4_qrhlq")
+_activeOnReady = false
 _hoveredScale = 1.5
 _hoveredAngle = 15.0
