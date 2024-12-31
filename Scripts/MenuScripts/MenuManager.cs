@@ -8,8 +8,6 @@ public partial class MenuManager : Control
 	public static readonly string MAIN_MENU = "MainMenu";
 	public static readonly string OPTIONS_MENU = "OptionsMenu";
 	public static readonly string INGAME_MENU = "InGameMenu";
-	private static readonly string LOADING_MENU = "LoadMenu"; // Only used by menu manager when loading resources (i.e. the level)
-	private static readonly string GAME_SCENE_PATH = "Scenes/Levels/GameWorld.tscn";
 
     public override void _Ready()
     {
@@ -22,11 +20,8 @@ public partial class MenuManager : Control
 	*/
     public void SwitchMenu(string nextMenu)
 	{
-		foreach(Control menu in GetChildren().Cast<Control>())
-		{
-			if (menu.Name == nextMenu) EnableMenu(menu, true);
-			else EnableMenu(menu, false);
-		}
+		foreach(Control menu in GetChildren().Cast<Control>()) 
+			EnableMenu(menu, menu.Name == nextMenu);
 	}
 
 	public void LoadGameWorld(bool usingSave = false)
