@@ -19,7 +19,11 @@ public partial class ButtonSnap : Button
 		_active = _activeOnReady;
 		// Used to tell button when button effects can be played, we do this to avoid casting by user
 		// Assumes theme used for buttons and UI will never change
-		if (!_activeOnReady) Connect(SignalName.ThemeChanged, Callable.From(() => _active = true));
+		if (!_activeOnReady) Connect(SignalName.ThemeChanged, Callable.From(() => 
+		{
+			_active = true;
+			if (IsHovered()) PlayHoverEffect();
+		}));
 	}
 	private void PlayHoverEffect()
 	{
