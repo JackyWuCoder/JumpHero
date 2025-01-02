@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbea24p0cu6hv"]
+[gd_scene load_steps=5 format=3 uid="uid://cbea24p0cu6hv"]
 
 [ext_resource type="Script" path="res://Scripts/MenuScripts/MenuManager.cs" id="1_5lweb"]
 [ext_resource type="PackedScene" uid="uid://5e25xtuem73q" path="res://Scenes/Menus/MainMenu.tscn" id="1_726xx"]
 [ext_resource type="PackedScene" uid="uid://ba7ig4o0chtxq" path="res://Scenes/Menus/InGameMenu.tscn" id="4_4oxhu"]
+[ext_resource type="AudioStream" uid="uid://ca68sjpvub7ia" path="res://Assets/Music/MainMenuMusic.mp3" id="4_knsgu"]
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -18,3 +19,7 @@ layout_mode = 1
 
 [node name="InGameMenu" parent="." instance=ExtResource("4_4oxhu")]
 layout_mode = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_knsgu")
+autoplay = true
