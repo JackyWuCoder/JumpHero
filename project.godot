@@ -25,6 +25,7 @@ GlobalVariables="*res://Scripts/GlobalVariables.cs"
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+mouse_cursor/custom_image="res://Assets/Sprites/Cursor.png"
 
 [dotnet]
 
