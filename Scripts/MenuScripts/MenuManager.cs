@@ -20,8 +20,8 @@ public partial class MenuManager : Control
 	*/
     public void SwitchMenu(string nextMenu)
 	{
-		foreach(Control menu in GetChildren().Cast<Control>()) 
-			EnableMenu(menu, menu.Name == nextMenu);
+		foreach(Node child in GetChildren())
+			if (child is Control menu) EnableMenu(menu, menu.Name == nextMenu);
 	}
 
 	public void LoadGameWorld(bool usingSave = false)
