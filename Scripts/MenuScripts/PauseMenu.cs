@@ -26,6 +26,9 @@ public partial class PauseMenu : Control
 		_buttonsGroup.ProcessMode = ProcessModeEnum.Disabled;
 		_menuBackground = GetNode<Control>(BACKGROUND_NODE_NAME);
 		_pauseLabel = GetNode<Control>(PAUSE_LABEL_NODE_NAME);
+		
+		// Hide mouse when in-game
+		Input.MouseMode = Input.MouseModeEnum.ConfinedHidden;
 
 		// Connect button signals
 		GetNode<Button>(CONTINUE_BUTTON_NODE_NAME).Connect(Button.SignalName.Pressed, Callable.From(OnContinue));
@@ -68,6 +71,9 @@ public partial class PauseMenu : Control
 	// Pause screen animations section
 	private void PauseWithAnimation()
 	{
+		// Show mouse when in menu
+		Input.MouseMode = Input.MouseModeEnum.Visible;
+
 		_isAnimating = true;
 		GetTree().Paused = true;
 		// Get endpoints for each element
@@ -106,6 +112,9 @@ public partial class PauseMenu : Control
 
 	private void ResumeWithAnimation()
 	{
+		// Hide mouse when playing the game
+		Input.MouseMode = Input.MouseModeEnum.ConfinedHidden;
+
 		_isAnimating = true;
 		float endHeight = GetViewportRect().Size.Y;
 		
