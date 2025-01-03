@@ -12,7 +12,15 @@ namespace JumpHero
 
         public override void ExitState()
         {
-            // TODO: Link up GPUParticle emitter to release particles to simulate hard landing
+            foreach(Node effect in GetViewport().GetCamera2D().GetChildren())
+            {
+                if (effect is CameraShake shakeEffect)
+                {
+                    float fallSpeed = player.GetRealVelocity().Y;
+                    shakeEffect.Shake(fallSpeed / Player.FREEFALL_THRESHOLD);
+                    break;
+                }
+            }
         }
 
         public override void Process(double delta)
