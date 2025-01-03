@@ -42,12 +42,13 @@ public partial class CameraShake : Node
 		if (amount != 0) _trauma = amount > maxTrauma ? maxTrauma : amount;
 		
 		// Calculate shake offset values
+		float optionsFactor = GlobalVariables.Instance.ScreenShakeAmount;
 		_noisePosition += 1;
 		float shakeFactor = Mathf.Pow(_trauma, 3);
-		_camera.RotationDegrees = _maxRotationDegrees * shakeFactor * _noise.GetNoise2D(_noise.Seed, _noisePosition);
+		_camera.RotationDegrees = _maxRotationDegrees * optionsFactor * shakeFactor * _noise.GetNoise2D(_noise.Seed, _noisePosition);
 		_camera.Offset = new Vector2(
-			_maxOffset.X * shakeFactor * _noise.GetNoise2D(_noise.Seed * 2, _noisePosition),
-			_maxOffset.Y * shakeFactor * _noise.GetNoise2D(_noise.Seed *3, _noisePosition)
+			_maxOffset.X * shakeFactor * optionsFactor * _noise.GetNoise2D(_noise.Seed * 2, _noisePosition),
+			_maxOffset.Y * shakeFactor * optionsFactor * _noise.GetNoise2D(_noise.Seed *3, _noisePosition)
 		);
     }
 
