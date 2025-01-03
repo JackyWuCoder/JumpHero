@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="2_1ym8w"]
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="2_whdpe"]
 [ext_resource type="PackedScene" uid="uid://biybh7wpqgjet" path="res://Scenes/Layouts/World1.tscn" id="3_1lik6"]
-[ext_resource type="Script" path="res://Scripts/CameraManager.cs" id="3_pppdb"]
+[ext_resource type="Script" path="res://Scripts/CameraScripts/CameraManager.cs" id="3_pppdb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxju4"]
 shader = ExtResource("1_fn3rc")

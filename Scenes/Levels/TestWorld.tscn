@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/GlowFilter.gdshader" id="1_2jeao"]
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_t2mjh"]
 [ext_resource type="PackedScene" uid="uid://dyqm2jhmho4gp" path="res://Scenes/Objects/Player.tscn" id="1_y5rc8"]
-[ext_resource type="Script" path="res://Scripts/CameraManager.cs" id="3_notlf"]
+[ext_resource type="Script" path="res://Scripts/CameraScripts/CameraManager.cs" id="3_notlf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eh2kd"]
 shader = ExtResource("1_2jeao")
