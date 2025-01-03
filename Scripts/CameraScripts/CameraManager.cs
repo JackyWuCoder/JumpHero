@@ -21,6 +21,8 @@ public partial class CameraManager : Camera2D
     private void TransitionCamera(Player player)
     {
         if (_isTransitioningLevel) return;
+        if (IsInCameraYBounds(player)) return; // Checks if player has left screen via up or down and not from sides
+
         // Calculates new camera position via ternary operator
         Vector2 newCameraPosition = player.Position.Y < (Position.Y + _cameraYOffset / 2) ? 
             Position + Vector2.Up * _cameraYOffset : Position + Vector2.Down * _cameraYOffset;
@@ -29,5 +31,11 @@ public partial class CameraManager : Camera2D
         transition.TweenProperty(this, nameof(Position).ToLower(), newCameraPosition, _transitionSpeed);
         transition.TweenCallback(Callable.From(() => _isTransitioningLevel = false));
         transition.Play();
+    }
+
+    private bool IsInCameraYBounds(Player player)
+    {
+        float bottom = Position.Y - GetViewportRect().Size.Y / 2, top = Position.Y + GetViewportRect().Size.Y / 2;
+        return bottom <= player.Position.Y && player.Position.Y <= top;
     }
 }
