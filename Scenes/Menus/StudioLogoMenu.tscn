@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv07650x3e6cq"]
+
+[ext_resource type="Texture2D" uid="uid://8b4ko77ynimp" path="res://Assets/Images/Logo/StudioLogo1.png" id="1_ewnls"]
+[ext_resource type="Script" path="res://Scripts/MenuScripts/SplashMenu.cs" id="1_g3t81"]
+[ext_resource type="Texture2D" uid="uid://run4cqhu4hnw" path="res://Assets/Images/Logo/StudioLogo2.png" id="2_08ym0"]
+[ext_resource type="Texture2D" uid="uid://bhuoh3e4j64io" path="res://Assets/Images/Logo/StudioLogo3.png" id="3_0wsvr"]
+[ext_resource type="Texture2D" uid="uid://0sx7sgfaywgv" path="res://Assets/Images/Logo/StudioLogo4.png" id="4_i84qr"]
+[ext_resource type="AudioStream" uid="uid://cww3uh7xx2ll3" path="res://Assets/Sounds/TrashSound.mp3" id="6_p1dft"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f11qi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ewnls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_08ym0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0wsvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i84qr")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 9.0
+}]
+
+[node name="StudioLogo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3t81")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 0.0156863, 0.0156863, 1)
+
+[node name="Logo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 5.0
+offset_right = 20.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundOutline" type="ColorRect" parent="Logo"]
+layout_mode = 0
+offset_left = -115.0
+offset_top = -115.0
+offset_right = 115.0
+offset_bottom = 115.0
+rotation = 0.785398
+pivot_offset = Vector2(115, 115)
+color = Color(0.17098, 0.0683753, 0.00150794, 1)
+
+[node name="LogoBackground" type="ColorRect" parent="Logo"]
+layout_mode = 0
+offset_left = -115.0
+offset_top = -95.0
+offset_right = 85.0
+offset_bottom = 105.0
+rotation = 0.785398
+pivot_offset = Vector2(115, 115)
+color = Color(0.838143, 0.349699, 0.0887136, 1)
+
+[node name="StudioLogo" type="AnimatedSprite2D" parent="Logo"]
+sprite_frames = SubResource("SpriteFrames_f11qi")
+animation = &"Fly"
+frame_progress = 0.831121
+
+[node name="TrashSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_p1dft")
