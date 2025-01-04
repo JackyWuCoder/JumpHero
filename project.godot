@@ -13,6 +13,7 @@ config_version=5
 config/name="JumpHero"
 run/main_scene="res://Scenes/Menus/AllMenus.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0.0142752, 0.0142752, 0.0142752, 1)
 config/icon="res://icon.svg"
 
 [autoload]
