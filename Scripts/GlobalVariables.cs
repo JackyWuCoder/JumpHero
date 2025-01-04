@@ -6,6 +6,9 @@ public partial class GlobalVariables : Node
 {
 	public static GlobalVariables Instance { get; private set; }
 
+	// Variables for management between scenes
+	public bool FirstLaunch = true; // For any effects that only run once on first launch
+
 	// Save game properties
 	public int World = 1;
 	
