@@ -8,10 +8,13 @@ public partial class MenuManager : Control
 	public static readonly string MAIN_MENU = "MainMenu";
 	public static readonly string OPTIONS_MENU = "OptionsMenu";
 	public static readonly string INGAME_MENU = "InGameMenu";
+	private static readonly string SPLASH_MENU = "StudioLogo";
+	private static readonly string MUSIC_PLAYER = "MusicPlayer";
 
     public override void _Ready()
     {
-        SwitchMenu(MAIN_MENU); // On first boot-up, go to main menu
+		if (GlobalVariables.Instance.FirstLaunch) SwitchMenu(SPLASH_MENU); // On first boot-up, go to studio logo splash screen
+		else SwitchMenu(MAIN_MENU);
     }
     /*
 		Menus are expected to use one of the static variables, each menu also has to match name with static constants.
@@ -22,6 +25,15 @@ public partial class MenuManager : Control
 	{
 		foreach(Node child in GetChildren())
 			if (child is Control menu) EnableMenu(menu, menu.Name == nextMenu);
+	}
+
+	public void PlayMusic(bool play, float volumeOffset = 0)
+	{
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>(MUSIC_PLAYER);
+		music.VolumeDb = volumeOffset; // Default value is 0 (no offset)
+		if (!play) music.Stop();
+		else if (music.Playing) return;
+		else music.Play();
 	}
 
 	public void LoadGameWorld(bool usingSave = false)
