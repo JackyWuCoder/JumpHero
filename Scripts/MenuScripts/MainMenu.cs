@@ -58,7 +58,11 @@ public partial class MainMenu : Control
 
 	private void OnVisibilityChanged()
 	{
-		if (Visible == true && firstLoad) ShowWithAnimation();
+		if (Visible == true && firstLoad)
+		{
+		 	ShowWithAnimation();
+			manager.PlayMusic(true);
+		}
 	}
 
 	private void ShowWithAnimation()
