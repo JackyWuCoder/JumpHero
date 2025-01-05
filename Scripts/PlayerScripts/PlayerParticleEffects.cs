@@ -13,19 +13,20 @@ namespace JumpHero
 			LIGHT, // Played during any collision
 			SUSTAINED_LIGHT // Played during jump wind-up
 		}
+		private Player _player;
 
 		public override void _Ready()
 		{
 			// Connect player signals
-			Player player = GetOwner<Player>();
-			player.Connect(Player.SignalName.OnChargeChange, Callable.From((float percentage) => OnChargeChange(percentage)));
-			player.Connect(Player.SignalName.OnStateChange, 
+			_player = GetOwner<Player>();
+			_player.Connect(Player.SignalName.OnChargeChange, Callable.From((float percentage) => OnChargeChange(percentage)));
+			_player.Connect(Player.SignalName.OnStateChange, 
 				Callable.From((PlayerState oldState, PlayerState newState) => OnStateChange(oldState, newState))
 			);
-			player.Connect(Player.SignalName.OnCollision, Callable.From((KinematicCollision2D collision) => OnCollide(collision)));
-			player.Connect(Player.SignalName.OnJump, Callable.From(() => Emitting = false));
+			_player.Connect(Player.SignalName.OnCollision, Callable.From((KinematicCollision2D collision) => OnCollide(collision)));
+			_player.Connect(Player.SignalName.OnJump, Callable.From(() => Emitting = false));
 
-			Modulate = PlayerSpriteEffect.DEFAULT_PLAYER_COLOR;
+			Modulate = Player.DEFAULT_PLAYER_COLOR;
 			InitializeParticleProperties();
 		}
 
@@ -59,6 +60,7 @@ namespace JumpHero
 		{
 			Emitting = false; // Stop previous emission if any
 			ParticleProcessMaterial material = ProcessMaterial as ParticleProcessMaterial;
+			Modulate = _player.CurrentColor;
 			switch(type)
 			{
 				case EmissionType.EXPLOSIVE:
