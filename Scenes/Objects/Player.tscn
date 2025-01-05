@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dyqm2jhmho4gp"]
+[gd_scene load_steps=31 format=3 uid="uid://dyqm2jhmho4gp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.cs" id="1_f4ivg"]
 [ext_resource type="Texture2D" uid="uid://c1g8q583qhqsf" path="res://Assets/Sprites/Player/BaseBox.png" id="2_6xh3c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerStateManager.cs" id="2_mh5yt"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerSoundManager.cs" id="3_q5cva"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Airborne.cs" id="3_xaqjd"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/PlayerColorManager.cs" id="4_5ocjb"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Freefall.cs" id="4_6bp1p"]
 [ext_resource type="AudioStream" uid="uid://b2dn3htkv7t65" path="res://Assets/Sounds/PlayerSounds/ChargeLoop.mp3" id="4_cgjga"]
 [ext_resource type="Script" path="res://Scripts/PlayerScripts/States/Grounded.cs" id="5_7ey8u"]
@@ -327,6 +328,7 @@ rect = Rect2(-25, -25, 50, 50)
 shape = SubResource("RectangleShape2D_um7ai")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.901961, 0.298039, 0.054902, 1)
 texture = ExtResource("2_6xh3c")
 script = ExtResource("2_62dj2")
 
@@ -334,6 +336,9 @@ script = ExtResource("2_62dj2")
 libraries = {
 "": SubResource("AnimationLibrary_pqqee")
 }
+
+[node name="ColorManager" type="Node" parent="Sprite"]
+script = ExtResource("4_5ocjb")
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamInteractive_83e2t")
@@ -347,6 +352,10 @@ process_material = SubResource("ParticleProcessMaterial_ibp1v")
 texture = ExtResource("2_6xh3c")
 one_shot = true
 explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+trail_sections = 2
+trail_section_subdivisions = 1
 script = ExtResource("10_avisf")
 
 [node name="States" type="Node" parent="."]
