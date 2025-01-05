@@ -5,9 +5,6 @@ namespace JumpHero
 {
 	public partial class PlayerSpriteEffect : Sprite2D
 	{
-		// static constants
-		public static readonly Color DEFAULT_PLAYER_COLOR = new("e64c0e"); // Orange
-
 		// animation names
 		private static readonly string SQUASH_BOTTOM = "SquashBottom"; // played when soft landing (airborne -> grounded)
 		private static readonly string SQUASH_LEFT = "SquashLeft"; // played when hitting left wall
@@ -25,7 +22,6 @@ namespace JumpHero
 		private static readonly float MAX_SQUASH_AMOUNT_X = 1.3f;
 
 		// data members
-		public Color Color { get; private set; } = DEFAULT_PLAYER_COLOR; // TODO: Determine if this is necessary
 		[Export] private Vector2 _spriteSize = new(50, 50);
 		private AnimationPlayer _animation;
 
@@ -45,15 +41,9 @@ namespace JumpHero
 			player.Connect(Player.SignalName.OnCollision, Callable.From((KinematicCollision2D collision) => OnCollision(collision)));
 
 			// Initialize player visuals
-			Modulate = DEFAULT_PLAYER_COLOR;
+			Modulate = Player.DEFAULT_PLAYER_COLOR;
 		}
-
-		public void SetColor(Color color)
-		{
-			Modulate = color;
-			Color = color;
-		}
-
+		
         private void OnStateChange(PlayerStateManager.PlayerState oldState, PlayerStateManager.PlayerState newState)
 		{
 			if (newState == PlayerStateManager.PlayerState.GROUNDED)

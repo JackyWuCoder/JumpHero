@@ -20,6 +20,7 @@ namespace JumpHero
 		private static readonly string SCREEN_NOTIFIER_NODE_NAME = "ScreenNotifier";
 
 		// static constants
+		public static readonly Color DEFAULT_PLAYER_COLOR = new("e64c0e"); // Orange
 		public static readonly float DEFAULT_GRAVITY = 9.8f;
 		public static readonly float FREEFALL_THRESHOLD = 1100f;
 		public static readonly float SLOPE_ANGLE_THRESHOLD = Mathf.DegToRad(25);
@@ -29,6 +30,7 @@ namespace JumpHero
 		public static readonly float MIN_JUMP_WIDTH = 35f;
 
 		// data members
+		public Color CurrentColor { get; private set; } = Player.DEFAULT_PLAYER_COLOR;
 		public float Gravity { get; private set; } = DEFAULT_GRAVITY;
 		public float MoveSpeed { get; private set; } = 175f;
 		public bool IsFacingRight { get; private set; } = false;
@@ -45,6 +47,11 @@ namespace JumpHero
 				.Connect(VisibleOnScreenNotifier2D.SignalName.ScreenExited,
 					Callable.From(() => EmitSignal(SignalName.OnScreenExit))
 			);
+		}
+
+		public void UpdateColor(Color color)
+		{
+			CurrentColor = color;
 		}
 
 		public void NotifyJump()
